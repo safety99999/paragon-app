@@ -130,51 +130,36 @@ function Icon({
 }
 
 /* ===========================================================
-   저장소 (구글 앱스크립트 백엔드 or 로컬 폴백)
+   저장소 (구글 앱스크립트 백엔드로 고정)
 =========================================================== */
-const CONFIG_KEY = "property-app-remote-url";
-function getRemoteUrl() {
-  return localStorage.getItem(CONFIG_KEY) || "";
-}
-function setRemoteUrl(url) {
-  localStorage.setItem(CONFIG_KEY, url);
-}
+const REMOTE_URL = "https://script.google.com/macros/s/AKfycbyYgOket1fpa8EmgxQZh4igbq4WD5JUrQhaoQAWY-ybBmfSZ5GGxRQR_R75h2oe4_uwzw/exec";
+const SECRET_TOKEN = "2c58ca22f7250abc621f6ce24fe92ce2";
+const APP_PASSCODE = "1695";
+const UNLOCK_KEY = "property-app-unlocked";
 const Storage = {
   async get(key) {
-    const remote = getRemoteUrl();
-    if (!remote) {
-      const v = localStorage.getItem("local:" + key);
-      return v !== null ? {
-        key,
-        value: v
-      } : null;
-    }
-    const res = await fetch(`${remote}?key=${encodeURIComponent(key)}`);
+    const res = await fetch(`${REMOTE_URL}?key=${encodeURIComponent(key)}&token=${SECRET_TOKEN}`);
     const json = await res.json();
+    if (json.error) throw new Error(json.error);
     return json.value !== undefined && json.value !== null && json.value !== "" ? {
       key,
       value: json.value
     } : null;
   },
   async set(key, value) {
-    const remote = getRemoteUrl();
-    if (!remote) {
-      localStorage.setItem("local:" + key, value);
-      return {
-        key,
-        value
-      };
-    }
-    await fetch(remote, {
+    const res = await fetch(REMOTE_URL, {
       method: "POST",
       headers: {
         "Content-Type": "text/plain;charset=utf-8"
       },
       body: JSON.stringify({
         key,
-        value
+        value,
+        token: SECRET_TOKEN
       })
     });
+    const json = await res.json();
+    if (json.error) throw new Error(json.error);
     return {
       key,
       value
@@ -568,24 +553,21 @@ function SimpleLineChart({
 }
 
 /* ===========================================================
-   설정 화면 (Apps Script URL 연결)
+   비밀번호 잠금 화면
 =========================================================== */
-function SetupScreen({
-  onDone
+function PasscodeScreen({
+  onUnlock
 }) {
-  const [url, setUrl] = useState(getRemoteUrl());
-  const [mode, setMode] = useState(getRemoteUrl() ? "remote" : null);
-  const saveAndContinue = () => {
-    if (mode === "remote") {
-      if (!url.trim()) {
-        alert("웹앱 URL을 입력해주세요.");
-        return;
-      }
-      setRemoteUrl(url.trim());
+  const [pw, setPw] = useState("");
+  const [error, setError] = useState(false);
+  const submit = () => {
+    if (pw === APP_PASSCODE) {
+      localStorage.setItem(UNLOCK_KEY, "1");
+      onUnlock();
     } else {
-      setRemoteUrl("");
+      setError(true);
+      setPw("");
     }
-    onDone();
   };
   return /*#__PURE__*/React.createElement("div", {
     style: {
@@ -599,9 +581,10 @@ function SetupScreen({
   }, /*#__PURE__*/React.createElement("div", {
     className: "card",
     style: {
-      maxWidth: 420,
+      maxWidth: 340,
       width: "100%",
-      padding: 22
+      padding: 26,
+      textAlign: "center"
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
@@ -612,105 +595,50 @@ function SetupScreen({
     }
   }, "PROPERTY LEDGER"), /*#__PURE__*/React.createElement("div", {
     style: {
-      fontSize: 19,
+      fontSize: 18,
       fontWeight: 800,
       marginTop: 4,
-      marginBottom: 14
+      marginBottom: 18
     }
-  }, "데이터 저장 방식 선택"), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: "flex",
-      flexDirection: "column",
-      gap: 8,
-      marginBottom: 16
-    }
-  }, /*#__PURE__*/React.createElement("label", {
-    className: "card",
-    style: {
-      padding: 12,
-      display: "flex",
-      gap: 10,
-      alignItems: "flex-start",
-      cursor: "pointer",
-      border: mode === "remote" ? "1.5px solid #2A2620" : "1px solid #E4DDCC"
-    }
-  }, /*#__PURE__*/React.createElement("input", {
-    type: "radio",
-    checked: mode === "remote",
-    onChange: () => setMode("remote"),
-    style: {
-      marginTop: 3
-    }
-  }), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontWeight: 700,
-      fontSize: 13.5
-    }
-  }, "구글시트에 저장 (권장)"), /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 12,
-      color: "#8A8272",
-      marginTop: 2
-    }
-  }, "여러 기기에서 접속해도 같은 데이터를 봅니다. Apps Script 웹앱 URL이 필요해요."))), /*#__PURE__*/React.createElement("label", {
-    className: "card",
-    style: {
-      padding: 12,
-      display: "flex",
-      gap: 10,
-      alignItems: "flex-start",
-      cursor: "pointer",
-      border: mode === "local" ? "1.5px solid #2A2620" : "1px solid #E4DDCC"
-    }
-  }, /*#__PURE__*/React.createElement("input", {
-    type: "radio",
-    checked: mode === "local",
-    onChange: () => setMode("local"),
-    style: {
-      marginTop: 3
-    }
-  }), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontWeight: 700,
-      fontSize: 13.5
-    }
-  }, "이 기기에만 저장"), /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 12,
-      color: "#8A8272",
-      marginTop: 2
-    }
-  }, "설정 없이 바로 사용 가능. 다른 기기와 데이터가 공유되지 않습니다.")))), mode === "remote" && /*#__PURE__*/React.createElement("div", {
-    style: {
-      marginBottom: 14
-    }
-  }, /*#__PURE__*/React.createElement("input", {
+  }, "비밀번호 입력"), /*#__PURE__*/React.createElement("input", {
     className: "input",
-    placeholder: "https://script.google.com/macros/s/.../exec",
-    value: url,
-    onChange: e => setUrl(e.target.value)
-  }), /*#__PURE__*/React.createElement("div", {
+    type: "password",
+    inputMode: "numeric",
+    autoFocus: true,
+    value: pw,
+    onChange: e => {
+      setPw(e.target.value);
+      setError(false);
+    },
+    onKeyDown: e => {
+      if (e.key === "Enter") submit();
+    },
+    placeholder: "••••",
     style: {
-      fontSize: 11.5,
-      color: "#B5AC98",
-      marginTop: 6,
-      lineHeight: 1.5
+      textAlign: "center",
+      fontSize: 18,
+      letterSpacing: 4
     }
-  }, "Google 시트 → 확장 프로그램 → Apps Script에 제공된 코드를 붙여넣고", /*#__PURE__*/React.createElement("br", null), "\"웹 앱으로 배포\" 후 나온 URL을 여기에 붙여넣으세요.")), /*#__PURE__*/React.createElement("button", {
+  }), error && /*#__PURE__*/React.createElement("div", {
+    style: {
+      color: "#B0546A",
+      fontSize: 12.5,
+      marginTop: 8
+    }
+  }, "비밀번호가 올바르지 않습니다"), /*#__PURE__*/React.createElement("button", {
     className: "save-btn",
-    onClick: saveAndContinue,
-    disabled: !mode,
     style: {
-      opacity: mode ? 1 : 0.5
-    }
-  }, "시작하기")));
+      marginTop: 16
+    },
+    onClick: submit
+  }, "확인")));
 }
 
 /* ===========================================================
    앱 루트
 =========================================================== */
 function PropertyApp() {
-  const [configured, setConfigured] = useState(localStorage.getItem(CONFIG_KEY) !== null);
+  const [unlocked, setUnlocked] = useState(localStorage.getItem(UNLOCK_KEY) === "1");
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [tab, setTab] = useState("dashboard");
@@ -718,7 +646,7 @@ function PropertyApp() {
   const [saveState, setSaveState] = useState("idle");
   const [showSettings, setShowSettings] = useState(false);
   useEffect(() => {
-    if (!configured) return;
+    if (!unlocked) return;
     (async () => {
       setLoading(true);
       try {
@@ -730,7 +658,7 @@ function PropertyApp() {
         setLoading(false);
       }
     })();
-  }, [configured]);
+  }, [unlocked]);
   useEffect(() => {
     if (!data || loading) return;
     const t = setTimeout(async () => {
@@ -744,9 +672,9 @@ function PropertyApp() {
     }, 500);
     return () => clearTimeout(t);
   }, [data, loading]);
-  if (!configured) {
-    return /*#__PURE__*/React.createElement(SetupScreen, {
-      onDone: () => setConfigured(true)
+  if (!unlocked) {
+    return /*#__PURE__*/React.createElement(PasscodeScreen, {
+      onUnlock: () => setUnlocked(true)
     });
   }
   if (loading || !data) {
@@ -920,17 +848,12 @@ function PropertyApp() {
       }
     }, t.label));
   })), showSettings && /*#__PURE__*/React.createElement(SettingsModal, {
-    onClose: () => setShowSettings(false),
-    onReset: () => {
-      setConfigured(false);
-    }
+    onClose: () => setShowSettings(false)
   }));
 }
 function SettingsModal({
-  onClose,
-  onReset
+  onClose
 }) {
-  const [url, setUrl] = useState(getRemoteUrl());
   return /*#__PURE__*/React.createElement("div", {
     onClick: onClose,
     style: {
@@ -953,50 +876,31 @@ function SettingsModal({
     style: {
       fontWeight: 800,
       fontSize: 16,
-      marginBottom: 12
+      marginBottom: 4
     }
-  }, "저장소 설정"), /*#__PURE__*/React.createElement("div", {
+  }, "설정"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 12.5,
-      color: "#6B6355",
-      marginBottom: 6
+      color: "#8A8272",
+      marginBottom: 16
     }
-  }, "구글 앱스크립트 웹앱 URL"), /*#__PURE__*/React.createElement("input", {
-    className: "input",
-    value: url,
-    onChange: e => setUrl(e.target.value),
-    placeholder: "https://script.google.com/macros/s/.../exec"
-  }), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: "flex",
-      gap: 8,
-      marginTop: 14
-    }
-  }, /*#__PURE__*/React.createElement("button", {
-    className: "save-btn",
-    style: {
-      flex: 1
-    },
+  }, "데이터는 구글시트에 자동으로 저장됩니다."), /*#__PURE__*/React.createElement("button", {
     onClick: () => {
-      setRemoteUrl(url.trim());
-      location.reload();
-    }
-  }, "저장 후 새로고침")), /*#__PURE__*/React.createElement("button", {
-    onClick: () => {
-      setRemoteUrl("");
-      localStorage.removeItem(CONFIG_KEY);
+      localStorage.removeItem(UNLOCK_KEY);
       location.reload();
     },
     style: {
-      marginTop: 10,
-      background: "none",
-      border: "none",
-      color: "#B0546A",
-      fontSize: 12.5,
+      padding: "10px",
+      borderRadius: 10,
+      border: "1px solid #DDD5C4",
+      background: "#FBF8F2",
+      color: "#2A2620",
+      fontWeight: 700,
+      fontSize: 13.5,
       cursor: "pointer",
       width: "100%"
     }
-  }, "이 기기에만 저장하는 방식으로 전환")));
+  }, "잠금 화면으로 돌아가기")));
 }
 function SaveIndicator({
   state
