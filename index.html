@@ -31,7 +31,6 @@
 <div id="root"></div>
 
 <script>
-import { jsxDEV as _jsxDEV, Fragment as _Fragment } from "react/jsx-dev-runtime";
 const {
   useState,
   useEffect,
@@ -58,97 +57,76 @@ function Icon({
     strokeLinejoin: "round"
   };
   const paths = {
-    building: /*#__PURE__*/_jsxDEV(_Fragment, {
-      children: [/*#__PURE__*/_jsxDEV("rect", {
-        x: "4",
-        y: "3",
-        width: "16",
-        height: "18",
-        rx: "1"
-      }, void 0, false), /*#__PURE__*/_jsxDEV("path", {
-        d: "M9 8h1M14 8h1M9 12h1M14 12h1M9 16h1M14 16h1"
-      }, void 0, false)]
-    }, void 0, true),
-    home: /*#__PURE__*/_jsxDEV(_Fragment, {
-      children: [/*#__PURE__*/_jsxDEV("path", {
-        d: "M3 11l9-8 9 8"
-      }, void 0, false), /*#__PURE__*/_jsxDEV("path", {
-        d: "M5 10v10h14V10"
-      }, void 0, false)]
-    }, void 0, true),
-    file: /*#__PURE__*/_jsxDEV(_Fragment, {
-      children: [/*#__PURE__*/_jsxDEV("path", {
-        d: "M6 3h9l5 5v13H6z"
-      }, void 0, false), /*#__PURE__*/_jsxDEV("path", {
-        d: "M15 3v5h5"
-      }, void 0, false)]
-    }, void 0, true),
-    wrench: /*#__PURE__*/_jsxDEV("path", {
+    building: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("rect", {
+      x: "4",
+      y: "3",
+      width: "16",
+      height: "18",
+      rx: "1"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M9 8h1M14 8h1M9 12h1M14 12h1M9 16h1M14 16h1"
+    })),
+    home: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("path", {
+      d: "M3 11l9-8 9 8"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M5 10v10h14V10"
+    })),
+    file: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("path", {
+      d: "M6 3h9l5 5v13H6z"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M15 3v5h5"
+    })),
+    wrench: /*#__PURE__*/React.createElement("path", {
       d: "M14.7 6.3a4 4 0 1 0-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 0 5.4-5.4l-2.8 2.8-2-2z"
-    }, void 0, false),
-    zap: /*#__PURE__*/_jsxDEV("path", {
+    }),
+    zap: /*#__PURE__*/React.createElement("path", {
       d: "M13 2 4 14h6l-1 8 9-12h-6z"
-    }, void 0, false),
-    chart: /*#__PURE__*/_jsxDEV(_Fragment, {
-      children: /*#__PURE__*/_jsxDEV("path", {
-        d: "M4 20V10M12 20V4M20 20v-6"
-      }, void 0, false)
-    }, void 0, false),
-    plus: /*#__PURE__*/_jsxDEV(_Fragment, {
-      children: /*#__PURE__*/_jsxDEV("path", {
-        d: "M12 5v14M5 12h14"
-      }, void 0, false)
-    }, void 0, false),
-    x: /*#__PURE__*/_jsxDEV(_Fragment, {
-      children: /*#__PURE__*/_jsxDEV("path", {
-        d: "M18 6 6 18M6 6l12 12"
-      }, void 0, false)
-    }, void 0, false),
-    check: /*#__PURE__*/_jsxDEV("path", {
+    }),
+    chart: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("path", {
+      d: "M4 20V10M12 20V4M20 20v-6"
+    })),
+    plus: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("path", {
+      d: "M12 5v14M5 12h14"
+    })),
+    x: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("path", {
+      d: "M18 6 6 18M6 6l12 12"
+    })),
+    check: /*#__PURE__*/React.createElement("path", {
       d: "M20 6 9 17l-5-5"
-    }, void 0, false),
-    chevron: /*#__PURE__*/_jsxDEV("path", {
+    }),
+    chevron: /*#__PURE__*/React.createElement("path", {
       d: "M9 6l6 6-6 6"
-    }, void 0, false),
-    warn: /*#__PURE__*/_jsxDEV(_Fragment, {
-      children: [/*#__PURE__*/_jsxDEV("path", {
-        d: "M12 2 1 21h22z"
-      }, void 0, false), /*#__PURE__*/_jsxDEV("path", {
-        d: "M12 9v5M12 17h.01"
-      }, void 0, false)]
-    }, void 0, true),
-    trash: /*#__PURE__*/_jsxDEV(_Fragment, {
-      children: /*#__PURE__*/_jsxDEV("path", {
-        d: "M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"
-      }, void 0, false)
-    }, void 0, false),
-    save: /*#__PURE__*/_jsxDEV(_Fragment, {
-      children: [/*#__PURE__*/_jsxDEV("path", {
-        d: "M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"
-      }, void 0, false), /*#__PURE__*/_jsxDEV("path", {
-        d: "M9 21v-8h6v8M9 3v5h6"
-      }, void 0, false)]
-    }, void 0, true),
-    gear: /*#__PURE__*/_jsxDEV(_Fragment, {
-      children: [/*#__PURE__*/_jsxDEV("circle", {
-        cx: "12",
-        cy: "12",
-        r: "3"
-      }, void 0, false), /*#__PURE__*/_jsxDEV("path", {
-        d: "M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6V21a2 2 0 1 1-4 0v-.2a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.6-1H3a2 2 0 1 1 0-4h.2a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.6V3a2 2 0 1 1 4 0v.2a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.6 1H21a2 2 0 1 1 0 4h-.2a1.7 1.7 0 0 0-1.6 1z"
-      }, void 0, false)]
-    }, void 0, true),
-    loader: /*#__PURE__*/_jsxDEV("path", {
+    }),
+    warn: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("path", {
+      d: "M12 2 1 21h22z"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M12 9v5M12 17h.01"
+    })),
+    trash: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("path", {
+      d: "M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"
+    })),
+    save: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("path", {
+      d: "M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M9 21v-8h6v8M9 3v5h6"
+    })),
+    gear: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("circle", {
+      cx: "12",
+      cy: "12",
+      r: "3"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6V21a2 2 0 1 1-4 0v-.2a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.6-1H3a2 2 0 1 1 0-4h.2a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.6V3a2 2 0 1 1 4 0v.2a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.6 1H21a2 2 0 1 1 0 4h-.2a1.7 1.7 0 0 0-1.6 1z"
+    })),
+    loader: /*#__PURE__*/React.createElement("path", {
       d: "M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"
-    }, void 0, false)
+    })
   };
-  return /*#__PURE__*/_jsxDEV("svg", {
+  return /*#__PURE__*/React.createElement("svg", {
     ...common,
     style: spin ? {
       animation: "spin 1s linear infinite"
-    } : undefined,
-    children: paths[name] || null
-  }, void 0, false);
+    } : undefined
+  }, paths[name] || null);
 }
 
 /* ===========================================================
@@ -496,45 +474,42 @@ function SimpleBarChart({
   valueKey
 }) {
   const max = Math.max(1, ...data.map(d => d[valueKey]));
-  return /*#__PURE__*/_jsxDEV("div", {
+  return /*#__PURE__*/React.createElement("div", {
     style: {
       display: "flex",
       alignItems: "flex-end",
       gap: 6,
       height: 160,
       padding: "8px 6px"
-    },
-    children: data.map((d, i) => /*#__PURE__*/_jsxDEV("div", {
-      style: {
-        flex: 1,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: 4
-      },
-      children: [/*#__PURE__*/_jsxDEV("div", {
-        style: {
-          fontSize: 10,
-          color: "#8A8272"
-        },
-        children: d[valueKey] > 0 ? d[valueKey] : ""
-      }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-        style: {
-          width: "100%",
-          borderRadius: "4px 4px 0 0",
-          height: Math.max(3, d[valueKey] / max * 110),
-          background: d[valueKey] > max * 0.6 ? "#C97A4A" : "#D8B98A"
-        }
-      }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-        style: {
-          fontSize: 10,
-          color: "#6B6355",
-          fontWeight: 600
-        },
-        children: d[labelKey]
-      }, void 0, false)]
-    }, i, true))
-  }, void 0, false);
+    }
+  }, data.map((d, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    style: {
+      flex: 1,
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      gap: 4
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      color: "#8A8272"
+    }
+  }, d[valueKey] > 0 ? d[valueKey] : ""), /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: "100%",
+      borderRadius: "4px 4px 0 0",
+      height: Math.max(3, d[valueKey] / max * 110),
+      background: d[valueKey] > max * 0.6 ? "#C97A4A" : "#D8B98A"
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      color: "#6B6355",
+      fontWeight: 600
+    }
+  }, d[labelKey]))));
 }
 function SimpleLineChart({
   data,
@@ -551,47 +526,45 @@ function SimpleLineChart({
     const y = H - pad - d[valueKey] / max * (H - pad * 2);
     return `${x},${y}`;
   }).join(" ");
-  return /*#__PURE__*/_jsxDEV("div", {
+  return /*#__PURE__*/React.createElement("div", {
     style: {
       padding: "8px 6px",
       overflowX: "auto"
-    },
-    children: [/*#__PURE__*/_jsxDEV("svg", {
-      viewBox: `0 0 ${W} ${H}`,
-      style: {
-        width: "100%",
-        height: 140
-      },
-      children: [/*#__PURE__*/_jsxDEV("polyline", {
-        points: points,
-        fill: "none",
-        stroke: "#C97A4A",
-        strokeWidth: "2.4",
-        strokeLinejoin: "round",
-        strokeLinecap: "round"
-      }, void 0, false), data.map((d, i) => {
-        const x = pad + i * stepX,
-          y = H - pad - d[valueKey] / max * (H - pad * 2);
-        return /*#__PURE__*/_jsxDEV("circle", {
-          cx: x,
-          cy: y,
-          r: "2.6",
-          fill: "#C97A4A"
-        }, i, false);
-      })]
-    }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-      style: {
-        display: "flex",
-        justifyContent: "space-between",
-        fontSize: 9.5,
-        color: "#8A8272",
-        padding: "0 4px"
-      },
-      children: data.filter((_, i) => i % 2 === 0).map((d, i) => /*#__PURE__*/_jsxDEV("span", {
-        children: d[labelKey]
-      }, i, false))
-    }, void 0, false)]
-  }, void 0, true);
+    }
+  }, /*#__PURE__*/React.createElement("svg", {
+    viewBox: `0 0 ${W} ${H}`,
+    style: {
+      width: "100%",
+      height: 140
+    }
+  }, /*#__PURE__*/React.createElement("polyline", {
+    points: points,
+    fill: "none",
+    stroke: "#C97A4A",
+    strokeWidth: "2.4",
+    strokeLinejoin: "round",
+    strokeLinecap: "round"
+  }), data.map((d, i) => {
+    const x = pad + i * stepX,
+      y = H - pad - d[valueKey] / max * (H - pad * 2);
+    return /*#__PURE__*/React.createElement("circle", {
+      key: i,
+      cx: x,
+      cy: y,
+      r: "2.6",
+      fill: "#C97A4A"
+    });
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      justifyContent: "space-between",
+      fontSize: 9.5,
+      color: "#8A8272",
+      padding: "0 4px"
+    }
+  }, data.filter((_, i) => i % 2 === 0).map((d, i) => /*#__PURE__*/React.createElement("span", {
+    key: i
+  }, d[labelKey]))));
 }
 
 /* ===========================================================
@@ -614,7 +587,7 @@ function SetupScreen({
     }
     onDone();
   };
-  return /*#__PURE__*/_jsxDEV("div", {
+  return /*#__PURE__*/React.createElement("div", {
     style: {
       minHeight: "100vh",
       background: "#EFEAE0",
@@ -622,133 +595,115 @@ function SetupScreen({
       alignItems: "center",
       justifyContent: "center",
       padding: 20
-    },
-    children: /*#__PURE__*/_jsxDEV("div", {
-      className: "card",
-      style: {
-        maxWidth: 420,
-        width: "100%",
-        padding: 22
-      },
-      children: [/*#__PURE__*/_jsxDEV("div", {
-        style: {
-          fontSize: 11,
-          letterSpacing: 2,
-          color: "#9A8F73",
-          fontWeight: 700
-        },
-        children: "PROPERTY LEDGER"
-      }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-        style: {
-          fontSize: 19,
-          fontWeight: 800,
-          marginTop: 4,
-          marginBottom: 14
-        },
-        children: "데이터 저장 방식 선택"
-      }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-        style: {
-          display: "flex",
-          flexDirection: "column",
-          gap: 8,
-          marginBottom: 16
-        },
-        children: [/*#__PURE__*/_jsxDEV("label", {
-          className: "card",
-          style: {
-            padding: 12,
-            display: "flex",
-            gap: 10,
-            alignItems: "flex-start",
-            cursor: "pointer",
-            border: mode === "remote" ? "1.5px solid #2A2620" : "1px solid #E4DDCC"
-          },
-          children: [/*#__PURE__*/_jsxDEV("input", {
-            type: "radio",
-            checked: mode === "remote",
-            onChange: () => setMode("remote"),
-            style: {
-              marginTop: 3
-            }
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontWeight: 700,
-                fontSize: 13.5
-              },
-              children: "구글시트에 저장 (권장)"
-            }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 12,
-                color: "#8A8272",
-                marginTop: 2
-              },
-              children: "여러 기기에서 접속해도 같은 데이터를 봅니다. Apps Script 웹앱 URL이 필요해요."
-            }, void 0, false)]
-          }, void 0, true)]
-        }, void 0, true), /*#__PURE__*/_jsxDEV("label", {
-          className: "card",
-          style: {
-            padding: 12,
-            display: "flex",
-            gap: 10,
-            alignItems: "flex-start",
-            cursor: "pointer",
-            border: mode === "local" ? "1.5px solid #2A2620" : "1px solid #E4DDCC"
-          },
-          children: [/*#__PURE__*/_jsxDEV("input", {
-            type: "radio",
-            checked: mode === "local",
-            onChange: () => setMode("local"),
-            style: {
-              marginTop: 3
-            }
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontWeight: 700,
-                fontSize: 13.5
-              },
-              children: "이 기기에만 저장"
-            }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 12,
-                color: "#8A8272",
-                marginTop: 2
-              },
-              children: "설정 없이 바로 사용 가능. 다른 기기와 데이터가 공유되지 않습니다."
-            }, void 0, false)]
-          }, void 0, true)]
-        }, void 0, true)]
-      }, void 0, true), mode === "remote" && /*#__PURE__*/_jsxDEV("div", {
-        style: {
-          marginBottom: 14
-        },
-        children: [/*#__PURE__*/_jsxDEV("input", {
-          className: "input",
-          placeholder: "https://script.google.com/macros/s/.../exec",
-          value: url,
-          onChange: e => setUrl(e.target.value)
-        }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-          style: {
-            fontSize: 11.5,
-            color: "#B5AC98",
-            marginTop: 6,
-            lineHeight: 1.5
-          },
-          children: ["Google 시트 → 확장 프로그램 → Apps Script에 제공된 코드를 붙여넣고", /*#__PURE__*/_jsxDEV("br", {}, void 0, false), "\"웹 앱으로 배포\" 후 나온 URL을 여기에 붙여넣으세요."]
-        }, void 0, true)]
-      }, void 0, true), /*#__PURE__*/_jsxDEV("button", {
-        className: "save-btn",
-        onClick: saveAndContinue,
-        disabled: !mode,
-        style: {
-          opacity: mode ? 1 : 0.5
-        },
-        children: "시작하기"
-      }, void 0, false)]
-    }, void 0, true)
-  }, void 0, false);
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "card",
+    style: {
+      maxWidth: 420,
+      width: "100%",
+      padding: 22
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      letterSpacing: 2,
+      color: "#9A8F73",
+      fontWeight: 700
+    }
+  }, "PROPERTY LEDGER"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 19,
+      fontWeight: 800,
+      marginTop: 4,
+      marginBottom: 14
+    }
+  }, "데이터 저장 방식 선택"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      gap: 8,
+      marginBottom: 16
+    }
+  }, /*#__PURE__*/React.createElement("label", {
+    className: "card",
+    style: {
+      padding: 12,
+      display: "flex",
+      gap: 10,
+      alignItems: "flex-start",
+      cursor: "pointer",
+      border: mode === "remote" ? "1.5px solid #2A2620" : "1px solid #E4DDCC"
+    }
+  }, /*#__PURE__*/React.createElement("input", {
+    type: "radio",
+    checked: mode === "remote",
+    onChange: () => setMode("remote"),
+    style: {
+      marginTop: 3
+    }
+  }), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 700,
+      fontSize: 13.5
+    }
+  }, "구글시트에 저장 (권장)"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: "#8A8272",
+      marginTop: 2
+    }
+  }, "여러 기기에서 접속해도 같은 데이터를 봅니다. Apps Script 웹앱 URL이 필요해요."))), /*#__PURE__*/React.createElement("label", {
+    className: "card",
+    style: {
+      padding: 12,
+      display: "flex",
+      gap: 10,
+      alignItems: "flex-start",
+      cursor: "pointer",
+      border: mode === "local" ? "1.5px solid #2A2620" : "1px solid #E4DDCC"
+    }
+  }, /*#__PURE__*/React.createElement("input", {
+    type: "radio",
+    checked: mode === "local",
+    onChange: () => setMode("local"),
+    style: {
+      marginTop: 3
+    }
+  }), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 700,
+      fontSize: 13.5
+    }
+  }, "이 기기에만 저장"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: "#8A8272",
+      marginTop: 2
+    }
+  }, "설정 없이 바로 사용 가능. 다른 기기와 데이터가 공유되지 않습니다.")))), mode === "remote" && /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: 14
+    }
+  }, /*#__PURE__*/React.createElement("input", {
+    className: "input",
+    placeholder: "https://script.google.com/macros/s/.../exec",
+    value: url,
+    onChange: e => setUrl(e.target.value)
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11.5,
+      color: "#B5AC98",
+      marginTop: 6,
+      lineHeight: 1.5
+    }
+  }, "Google 시트 → 확장 프로그램 → Apps Script에 제공된 코드를 붙여넣고", /*#__PURE__*/React.createElement("br", null), "\"웹 앱으로 배포\" 후 나온 URL을 여기에 붙여넣으세요.")), /*#__PURE__*/React.createElement("button", {
+    className: "save-btn",
+    onClick: saveAndContinue,
+    disabled: !mode,
+    style: {
+      opacity: mode ? 1 : 0.5
+    }
+  }, "시작하기")));
 }
 
 /* ===========================================================
@@ -790,39 +745,36 @@ function PropertyApp() {
     return () => clearTimeout(t);
   }, [data, loading]);
   if (!configured) {
-    return /*#__PURE__*/_jsxDEV(SetupScreen, {
+    return /*#__PURE__*/React.createElement(SetupScreen, {
       onDone: () => setConfigured(true)
-    }, void 0, false);
+    });
   }
   if (loading || !data) {
-    return /*#__PURE__*/_jsxDEV("div", {
+    return /*#__PURE__*/React.createElement("div", {
       style: {
         minHeight: "100vh",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         background: "#EFEAE0"
-      },
-      children: /*#__PURE__*/_jsxDEV("div", {
-        style: {
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: 12,
-          color: "#5B5548"
-        },
-        children: [/*#__PURE__*/_jsxDEV(Icon, {
-          name: "loader",
-          size: 28,
-          spin: true
-        }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-          style: {
-            fontSize: 14
-          },
-          children: "불러오는 중..."
-        }, void 0, false)]
-      }, void 0, true)
-    }, void 0, false);
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: 12,
+        color: "#5B5548"
+      }
+    }, /*#__PURE__*/React.createElement(Icon, {
+      name: "loader",
+      size: 28,
+      spin: true
+    }), /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 14
+      }
+    }, "불러오는 중...")));
   }
   const tabs = [{
     id: "dashboard",
@@ -849,149 +801,137 @@ function PropertyApp() {
     label: "통계",
     icon: "chart"
   }];
-  return /*#__PURE__*/_jsxDEV("div", {
+  return /*#__PURE__*/React.createElement("div", {
     style: {
       minHeight: "100vh",
       background: "#EFEAE0",
       paddingBottom: 76
-    },
-    children: [/*#__PURE__*/_jsxDEV("header", {
+    }
+  }, /*#__PURE__*/React.createElement("header", {
+    style: {
+      padding: "22px 18px 14px",
+      position: "sticky",
+      top: 0,
+      background: "#EFEAE0",
+      zIndex: 10,
+      borderBottom: "1px solid #DDD5C4"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between"
+    }
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      letterSpacing: 2,
+      color: "#9A8F73",
+      fontWeight: 700
+    }
+  }, "PROPERTY LEDGER"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 20,
+      fontWeight: 800,
+      marginTop: 2
+    }
+  }, "다가구 관리대장")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 10
+    }
+  }, /*#__PURE__*/React.createElement(SaveIndicator, {
+    state: saveState
+  }), /*#__PURE__*/React.createElement("button", {
+    onClick: () => setShowSettings(true),
+    style: {
+      background: "none",
+      border: "none",
+      cursor: "pointer",
+      color: "#8A8272",
+      padding: 4
+    }
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "gear",
+    size: 19
+  }))))), /*#__PURE__*/React.createElement("main", {
+    style: {
+      padding: "16px 14px"
+    }
+  }, tab === "dashboard" && /*#__PURE__*/React.createElement(Dashboard, {
+    data: data,
+    onSelectUnit: ho => {
+      setSelectedUnit(ho);
+      setTab("units");
+    }
+  }), tab === "units" && /*#__PURE__*/React.createElement(UnitsTab, {
+    data: data,
+    setData: setData,
+    selectedUnit: selectedUnit,
+    setSelectedUnit: setSelectedUnit
+  }), tab === "items" && /*#__PURE__*/React.createElement(ItemsTab, {
+    data: data,
+    setData: setData
+  }), tab === "common" && /*#__PURE__*/React.createElement(CommonTab, {
+    data: data,
+    setData: setData
+  }), tab === "utility" && /*#__PURE__*/React.createElement(UtilityTab, {
+    data: data,
+    setData: setData
+  }), tab === "stats" && /*#__PURE__*/React.createElement(StatsTab, {
+    data: data
+  })), /*#__PURE__*/React.createElement("nav", {
+    style: {
+      position: "fixed",
+      bottom: 0,
+      left: 0,
+      right: 0,
+      background: "#2A2620",
+      display: "flex",
+      padding: "6px 2px calc(env(safe-area-inset-bottom,0px) + 6px)",
+      overflowX: "auto"
+    }
+  }, tabs.map(t => {
+    const active = tab === t.id;
+    return /*#__PURE__*/React.createElement("button", {
+      key: t.id,
+      onClick: () => setTab(t.id),
       style: {
-        padding: "22px 18px 14px",
-        position: "sticky",
-        top: 0,
-        background: "#EFEAE0",
-        zIndex: 10,
-        borderBottom: "1px solid #DDD5C4"
-      },
-      children: /*#__PURE__*/_jsxDEV("div", {
-        style: {
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between"
-        },
-        children: [/*#__PURE__*/_jsxDEV("div", {
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            style: {
-              fontSize: 11,
-              letterSpacing: 2,
-              color: "#9A8F73",
-              fontWeight: 700
-            },
-            children: "PROPERTY LEDGER"
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              fontSize: 20,
-              fontWeight: 800,
-              marginTop: 2
-            },
-            children: "다가구 관리대장"
-          }, void 0, false)]
-        }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-          style: {
-            display: "flex",
-            alignItems: "center",
-            gap: 10
-          },
-          children: [/*#__PURE__*/_jsxDEV(SaveIndicator, {
-            state: saveState
-          }, void 0, false), /*#__PURE__*/_jsxDEV("button", {
-            onClick: () => setShowSettings(true),
-            style: {
-              background: "none",
-              border: "none",
-              cursor: "pointer",
-              color: "#8A8272",
-              padding: 4
-            },
-            children: /*#__PURE__*/_jsxDEV(Icon, {
-              name: "gear",
-              size: 19
-            }, void 0, false)
-          }, void 0, false)]
-        }, void 0, true)]
-      }, void 0, true)
-    }, void 0, false), /*#__PURE__*/_jsxDEV("main", {
-      style: {
-        padding: "16px 14px"
-      },
-      children: [tab === "dashboard" && /*#__PURE__*/_jsxDEV(Dashboard, {
-        data: data,
-        onSelectUnit: ho => {
-          setSelectedUnit(ho);
-          setTab("units");
-        }
-      }, void 0, false), tab === "units" && /*#__PURE__*/_jsxDEV(UnitsTab, {
-        data: data,
-        setData: setData,
-        selectedUnit: selectedUnit,
-        setSelectedUnit: setSelectedUnit
-      }, void 0, false), tab === "items" && /*#__PURE__*/_jsxDEV(ItemsTab, {
-        data: data,
-        setData: setData
-      }, void 0, false), tab === "common" && /*#__PURE__*/_jsxDEV(CommonTab, {
-        data: data,
-        setData: setData
-      }, void 0, false), tab === "utility" && /*#__PURE__*/_jsxDEV(UtilityTab, {
-        data: data,
-        setData: setData
-      }, void 0, false), tab === "stats" && /*#__PURE__*/_jsxDEV(StatsTab, {
-        data: data
-      }, void 0, false)]
-    }, void 0, true), /*#__PURE__*/_jsxDEV("nav", {
-      style: {
-        position: "fixed",
-        bottom: 0,
-        left: 0,
-        right: 0,
-        background: "#2A2620",
+        flex: "1 0 auto",
+        minWidth: 58,
         display: "flex",
-        padding: "6px 2px calc(env(safe-area-inset-bottom,0px) + 6px)",
-        overflowX: "auto"
-      },
-      children: tabs.map(t => {
-        const active = tab === t.id;
-        return /*#__PURE__*/_jsxDEV("button", {
-          onClick: () => setTab(t.id),
-          style: {
-            flex: "1 0 auto",
-            minWidth: 58,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: 3,
-            padding: "8px 2px",
-            background: "none",
-            border: "none",
-            color: active ? "#E8A75C" : "#9A9385",
-            cursor: "pointer"
-          },
-          children: [/*#__PURE__*/_jsxDEV(Icon, {
-            name: t.icon,
-            size: 19
-          }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-            style: {
-              fontSize: 10,
-              fontWeight: active ? 700 : 500
-            },
-            children: t.label
-          }, void 0, false)]
-        }, t.id, true);
-      })
-    }, void 0, false), showSettings && /*#__PURE__*/_jsxDEV(SettingsModal, {
-      onClose: () => setShowSettings(false),
-      onReset: () => {
-        setConfigured(false);
+        flexDirection: "column",
+        alignItems: "center",
+        gap: 3,
+        padding: "8px 2px",
+        background: "none",
+        border: "none",
+        color: active ? "#E8A75C" : "#9A9385",
+        cursor: "pointer"
       }
-    }, void 0, false)]
-  }, void 0, true);
+    }, /*#__PURE__*/React.createElement(Icon, {
+      name: t.icon,
+      size: 19
+    }), /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 10,
+        fontWeight: active ? 700 : 500
+      }
+    }, t.label));
+  })), showSettings && /*#__PURE__*/React.createElement(SettingsModal, {
+    onClose: () => setShowSettings(false),
+    onReset: () => {
+      setConfigured(false);
+    }
+  }));
 }
 function SettingsModal({
   onClose,
   onReset
 }) {
   const [url, setUrl] = useState(getRemoteUrl());
-  return /*#__PURE__*/_jsxDEV("div", {
+  return /*#__PURE__*/React.createElement("div", {
     onClick: onClose,
     style: {
       position: "fixed",
@@ -1000,70 +940,63 @@ function SettingsModal({
       zIndex: 200,
       display: "flex",
       alignItems: "flex-end"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    onClick: e => e.stopPropagation(),
+    className: "card",
+    style: {
+      width: "100%",
+      borderRadius: "16px 16px 0 0",
+      padding: 20
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 800,
+      fontSize: 16,
+      marginBottom: 12
+    }
+  }, "저장소 설정"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12.5,
+      color: "#6B6355",
+      marginBottom: 6
+    }
+  }, "구글 앱스크립트 웹앱 URL"), /*#__PURE__*/React.createElement("input", {
+    className: "input",
+    value: url,
+    onChange: e => setUrl(e.target.value),
+    placeholder: "https://script.google.com/macros/s/.../exec"
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 8,
+      marginTop: 14
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "save-btn",
+    style: {
+      flex: 1
     },
-    children: /*#__PURE__*/_jsxDEV("div", {
-      onClick: e => e.stopPropagation(),
-      className: "card",
-      style: {
-        width: "100%",
-        borderRadius: "16px 16px 0 0",
-        padding: 20
-      },
-      children: [/*#__PURE__*/_jsxDEV("div", {
-        style: {
-          fontWeight: 800,
-          fontSize: 16,
-          marginBottom: 12
-        },
-        children: "저장소 설정"
-      }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-        style: {
-          fontSize: 12.5,
-          color: "#6B6355",
-          marginBottom: 6
-        },
-        children: "구글 앱스크립트 웹앱 URL"
-      }, void 0, false), /*#__PURE__*/_jsxDEV("input", {
-        className: "input",
-        value: url,
-        onChange: e => setUrl(e.target.value),
-        placeholder: "https://script.google.com/macros/s/.../exec"
-      }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-        style: {
-          display: "flex",
-          gap: 8,
-          marginTop: 14
-        },
-        children: /*#__PURE__*/_jsxDEV("button", {
-          className: "save-btn",
-          style: {
-            flex: 1
-          },
-          onClick: () => {
-            setRemoteUrl(url.trim());
-            location.reload();
-          },
-          children: "저장 후 새로고침"
-        }, void 0, false)
-      }, void 0, false), /*#__PURE__*/_jsxDEV("button", {
-        onClick: () => {
-          setRemoteUrl("");
-          localStorage.removeItem(CONFIG_KEY);
-          location.reload();
-        },
-        style: {
-          marginTop: 10,
-          background: "none",
-          border: "none",
-          color: "#B0546A",
-          fontSize: 12.5,
-          cursor: "pointer",
-          width: "100%"
-        },
-        children: "이 기기에만 저장하는 방식으로 전환"
-      }, void 0, false)]
-    }, void 0, true)
-  }, void 0, false);
+    onClick: () => {
+      setRemoteUrl(url.trim());
+      location.reload();
+    }
+  }, "저장 후 새로고침")), /*#__PURE__*/React.createElement("button", {
+    onClick: () => {
+      setRemoteUrl("");
+      localStorage.removeItem(CONFIG_KEY);
+      location.reload();
+    },
+    style: {
+      marginTop: 10,
+      background: "none",
+      border: "none",
+      color: "#B0546A",
+      fontSize: 12.5,
+      cursor: "pointer",
+      width: "100%"
+    }
+  }, "이 기기에만 저장하는 방식으로 전환")));
 }
 function SaveIndicator({
   state
@@ -1088,14 +1021,13 @@ function SaveIndicator({
   };
   const s = map[state] || map.idle;
   if (!s.text) return null;
-  return /*#__PURE__*/_jsxDEV("div", {
+  return /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 11,
       color: s.color,
       fontWeight: 600
-    },
-    children: s.text
-  }, void 0, false);
+    }
+  }, s.text);
 }
 
 /* ===========================================================
@@ -1116,242 +1048,217 @@ function Dashboard({
   const totalDeposit = data.units.reduce((s, u) => s + (Number(data.contracts[u.ho]?.deposit) || 0), 0);
   const totalRent = data.units.reduce((s, u) => s + (Number(data.contracts[u.ho]?.rent) || 0), 0);
   const vacantCount = data.units.filter(u => (data.contracts[u.ho]?.occupied ?? true) === false).length;
-  return /*#__PURE__*/_jsxDEV("div", {
+  return /*#__PURE__*/React.createElement("div", {
     style: {
       display: "flex",
       flexDirection: "column",
       gap: 18
-    },
-    children: [/*#__PURE__*/_jsxDEV("section", {
-      children: [/*#__PURE__*/_jsxDEV(SectionLabel, {
-        children: "건물 배치도"
-      }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-        className: "card",
-        style: {
-          padding: 16
-        },
-        children: [FLOOR_LAYOUT.slice().reverse().map(row => /*#__PURE__*/_jsxDEV("div", {
-          style: {
-            display: "flex",
-            gap: 8,
-            marginBottom: 8
-          },
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            style: {
-              width: 22,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: 11,
-              color: "#9A8F73",
-              fontWeight: 700
-            },
-            children: [row.floor, "F"]
-          }, void 0, true), row.cells.map((ho, i) => {
-            if (!ho) return /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                flex: 1
-              }
-            }, i, false);
-            const unit = data.units.find(u => u.ho === ho);
-            const c = data.contracts[ho] || {};
-            const vacant = (c.occupied ?? true) === false;
-            const d = daysUntil(c.endDate);
-            const warn = !vacant && d !== null && d <= 60;
-            return /*#__PURE__*/_jsxDEV("button", {
-              onClick: () => onSelectUnit(ho),
-              style: {
-                flex: 1,
-                aspectRatio: "1",
-                borderRadius: 10,
-                border: vacant ? "1.5px dashed #C97A4A" : warn ? "2px solid #C97A4A" : "1px solid #DDD5C4",
-                background: vacant ? "#FBF1E8" : warn ? "#F7E4D2" : "#FBF8F2",
-                cursor: "pointer",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: 2,
-                position: "relative"
-              },
-              children: [/*#__PURE__*/_jsxDEV("span", {
-                style: {
-                  width: 6,
-                  height: 6,
-                  borderRadius: 99,
-                  background: TYPE_COLOR[unit?.type] || "#999",
-                  position: "absolute",
-                  top: 6,
-                  right: 6
-                }
-              }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-                style: {
-                  fontSize: 12.5,
-                  fontWeight: 800
-                },
-                children: ho.replace("호", "")
-              }, void 0, false), vacant ? /*#__PURE__*/_jsxDEV("span", {
-                style: {
-                  fontSize: 9.5,
-                  fontWeight: 700,
-                  color: "#C97A4A"
-                },
-                children: "공실"
-              }, void 0, false) : warn ? /*#__PURE__*/_jsxDEV(Icon, {
-                name: "warn",
-                size: 11,
-                color: "#C97A4A"
-              }, void 0, false) : null]
-            }, ho, true);
-          })]
-        }, row.floor, true)), /*#__PURE__*/_jsxDEV("div", {
-          style: {
-            display: "flex",
-            gap: 12,
-            marginTop: 10,
-            flexWrap: "wrap"
-          },
-          children: Object.entries(TYPE_COLOR).map(([k, v]) => /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              display: "flex",
-              alignItems: "center",
-              gap: 5,
-              fontSize: 11,
-              color: "#6B6355"
-            },
-            children: [/*#__PURE__*/_jsxDEV("span", {
-              style: {
-                width: 7,
-                height: 7,
-                borderRadius: 99,
-                background: v
-              }
-            }, void 0, false), " ", k]
-          }, k, true))
-        }, void 0, false)]
-      }, void 0, true)]
-    }, void 0, true), /*#__PURE__*/_jsxDEV("section", {
+    }
+  }, /*#__PURE__*/React.createElement("section", null, /*#__PURE__*/React.createElement(SectionLabel, null, "건물 배치도"), /*#__PURE__*/React.createElement("div", {
+    className: "card",
+    style: {
+      padding: 16
+    }
+  }, FLOOR_LAYOUT.slice().reverse().map(row => /*#__PURE__*/React.createElement("div", {
+    key: row.floor,
+    style: {
+      display: "flex",
+      gap: 8,
+      marginBottom: 8
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 22,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      fontSize: 11,
+      color: "#9A8F73",
+      fontWeight: 700
+    }
+  }, row.floor, "F"), row.cells.map((ho, i) => {
+    if (!ho) return /*#__PURE__*/React.createElement("div", {
+      key: i,
       style: {
+        flex: 1
+      }
+    });
+    const unit = data.units.find(u => u.ho === ho);
+    const c = data.contracts[ho] || {};
+    const vacant = (c.occupied ?? true) === false;
+    const d = daysUntil(c.endDate);
+    const warn = !vacant && d !== null && d <= 60;
+    return /*#__PURE__*/React.createElement("button", {
+      key: ho,
+      onClick: () => onSelectUnit(ho),
+      style: {
+        flex: 1,
+        aspectRatio: "1",
+        borderRadius: 10,
+        border: vacant ? "1.5px dashed #C97A4A" : warn ? "2px solid #C97A4A" : "1px solid #DDD5C4",
+        background: vacant ? "#FBF1E8" : warn ? "#F7E4D2" : "#FBF8F2",
+        cursor: "pointer",
         display: "flex",
-        gap: 10
-      },
-      children: [/*#__PURE__*/_jsxDEV(StatCard, {
-        label: "총 보증금",
-        value: `${fmtMoney(totalDeposit)}만`
-      }, void 0, false), /*#__PURE__*/_jsxDEV(StatCard, {
-        label: "총 월세",
-        value: `${fmtMoney(totalRent)}만`
-      }, void 0, false), /*#__PURE__*/_jsxDEV(StatCard, {
-        label: "공실",
-        value: `${vacantCount}세대`,
-        accent: vacantCount > 0
-      }, void 0, false)]
-    }, void 0, true), /*#__PURE__*/_jsxDEV("section", {
-      children: [/*#__PURE__*/_jsxDEV(SectionLabel, {
-        children: "계약 만료 임박 (60일 이내)"
-      }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-        className: "card",
-        children: [soon.length === 0 && /*#__PURE__*/_jsxDEV(EmptyRow, {
-          text: "임박한 계약이 없습니다"
-        }, void 0, false), soon.map(c => /*#__PURE__*/_jsxDEV("div", {
-          className: "row",
-          onClick: () => onSelectUnit(c.ho),
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            style: {
-              display: "flex",
-              flexDirection: "column"
-            },
-            children: [/*#__PURE__*/_jsxDEV("span", {
-              style: {
-                fontWeight: 700,
-                fontSize: 14
-              },
-              children: c.ho
-            }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-              style: {
-                fontSize: 12,
-                color: "#8A8272"
-              },
-              children: ["만기 ", c.endDate]
-            }, void 0, true)]
-          }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              display: "flex",
-              alignItems: "center",
-              gap: 6
-            },
-            children: [/*#__PURE__*/_jsxDEV("span", {
-              style: {
-                fontSize: 12.5,
-                fontWeight: 700,
-                color: c.d < 0 ? "#B0546A" : "#C97A4A"
-              },
-              children: overdueLabel(c.endDate, c.d)
-            }, void 0, false), /*#__PURE__*/_jsxDEV(Icon, {
-              name: "chevron",
-              size: 16,
-              color: "#B5AC98"
-            }, void 0, false)]
-          }, void 0, true)]
-        }, c.ho, true))]
-      }, void 0, true)]
-    }, void 0, true)]
-  }, void 0, true);
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 2,
+        position: "relative"
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        width: 6,
+        height: 6,
+        borderRadius: 99,
+        background: TYPE_COLOR[unit?.type] || "#999",
+        position: "absolute",
+        top: 6,
+        right: 6
+      }
+    }), /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 12.5,
+        fontWeight: 800
+      }
+    }, ho.replace("호", "")), vacant ? /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 9.5,
+        fontWeight: 700,
+        color: "#C97A4A"
+      }
+    }, "공실") : warn ? /*#__PURE__*/React.createElement(Icon, {
+      name: "warn",
+      size: 11,
+      color: "#C97A4A"
+    }) : null);
+  }))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 12,
+      marginTop: 10,
+      flexWrap: "wrap"
+    }
+  }, Object.entries(TYPE_COLOR).map(([k, v]) => /*#__PURE__*/React.createElement("div", {
+    key: k,
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 5,
+      fontSize: 11,
+      color: "#6B6355"
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      width: 7,
+      height: 7,
+      borderRadius: 99,
+      background: v
+    }
+  }), " ", k))))), /*#__PURE__*/React.createElement("section", {
+    style: {
+      display: "flex",
+      gap: 10
+    }
+  }, /*#__PURE__*/React.createElement(StatCard, {
+    label: "총 보증금",
+    value: `${fmtMoney(totalDeposit)}만`
+  }), /*#__PURE__*/React.createElement(StatCard, {
+    label: "총 월세",
+    value: `${fmtMoney(totalRent)}만`
+  }), /*#__PURE__*/React.createElement(StatCard, {
+    label: "공실",
+    value: `${vacantCount}세대`,
+    accent: vacantCount > 0
+  })), /*#__PURE__*/React.createElement("section", null, /*#__PURE__*/React.createElement(SectionLabel, null, "계약 만료 임박 (60일 이내)"), /*#__PURE__*/React.createElement("div", {
+    className: "card"
+  }, soon.length === 0 && /*#__PURE__*/React.createElement(EmptyRow, {
+    text: "임박한 계약이 없습니다"
+  }), soon.map(c => /*#__PURE__*/React.createElement("div", {
+    key: c.ho,
+    className: "row",
+    onClick: () => onSelectUnit(c.ho)
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column"
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontWeight: 700,
+      fontSize: 14
+    }
+  }, c.ho), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 12,
+      color: "#8A8272"
+    }
+  }, "만기 ", c.endDate)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 6
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 12.5,
+      fontWeight: 700,
+      color: c.d < 0 ? "#B0546A" : "#C97A4A"
+    }
+  }, overdueLabel(c.endDate, c.d)), /*#__PURE__*/React.createElement(Icon, {
+    name: "chevron",
+    size: 16,
+    color: "#B5AC98"
+  })))))));
 }
 function StatCard({
   label,
   value,
   accent
 }) {
-  return /*#__PURE__*/_jsxDEV("div", {
+  return /*#__PURE__*/React.createElement("div", {
     className: "card",
     style: {
       flex: 1,
       padding: "14px 12px"
-    },
-    children: [/*#__PURE__*/_jsxDEV("div", {
-      style: {
-        fontSize: 11,
-        color: "#9A8F73",
-        fontWeight: 600
-      },
-      children: label
-    }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-      style: {
-        fontSize: 18,
-        fontWeight: 800,
-        marginTop: 4,
-        color: accent ? "#C97A4A" : "#2A2620"
-      },
-      children: value
-    }, void 0, false)]
-  }, void 0, true);
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: "#9A8F73",
+      fontWeight: 600
+    }
+  }, label), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 18,
+      fontWeight: 800,
+      marginTop: 4,
+      color: accent ? "#C97A4A" : "#2A2620"
+    }
+  }, value));
 }
 function SectionLabel({
   children
 }) {
-  return /*#__PURE__*/_jsxDEV("div", {
+  return /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 12.5,
       fontWeight: 700,
       color: "#6B6355",
       marginBottom: 8
-    },
-    children: children
-  }, void 0, false);
+    }
+  }, children);
 }
 function EmptyRow({
   text
 }) {
-  return /*#__PURE__*/_jsxDEV("div", {
+  return /*#__PURE__*/React.createElement("div", {
     style: {
       padding: "22px 14px",
       textAlign: "center",
       color: "#B5AC98",
       fontSize: 13
-    },
-    children: text
-  }, void 0, false);
+    }
+  }, text);
 }
 
 /* ===========================================================
@@ -1385,205 +1292,184 @@ function UnitsTab({
       }
     }
   }));
-  return /*#__PURE__*/_jsxDEV("div", {
+  return /*#__PURE__*/React.createElement("div", {
     style: {
       display: "flex",
       flexDirection: "column",
       gap: 14
-    },
-    children: [/*#__PURE__*/_jsxDEV("div", {
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 8,
+      overflowX: "auto",
+      paddingBottom: 4
+    }
+  }, data.units.map(u => /*#__PURE__*/React.createElement("button", {
+    key: u.ho,
+    onClick: () => setSelectedUnit(u.ho),
+    style: {
+      flexShrink: 0,
+      padding: "7px 13px",
+      borderRadius: 20,
+      fontSize: 13,
+      fontWeight: 700,
+      border: u.ho === unit.ho ? "1.5px solid #2A2620" : "1px solid #DDD5C4",
+      background: u.ho === unit.ho ? "#2A2620" : "#FBF8F2",
+      color: u.ho === unit.ho ? "#EFEAE0" : "#4A453A",
+      cursor: "pointer"
+    }
+  }, u.ho))), /*#__PURE__*/React.createElement("div", {
+    className: "card",
+    style: {
+      padding: 16
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      marginBottom: 12
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 17,
+      fontWeight: 800
+    }
+  }, unit.ho), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 6,
+      alignItems: "center"
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: () => updateContract("occupied", !(contract.occupied ?? true)),
+    style: {
+      fontSize: 11.5,
+      fontWeight: 700,
+      border: "none",
+      borderRadius: 20,
+      padding: "4px 11px",
+      cursor: "pointer",
+      background: contract.occupied ?? true ? "#EAF1E6" : "#F3E3DC",
+      color: contract.occupied ?? true ? "#4F6B48" : "#A85A3E"
+    }
+  }, contract.occupied ?? true ? "임대중" : "공실"), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 11.5,
+      fontWeight: 700,
+      color: "#fff",
+      background: TYPE_COLOR[unit.type],
+      padding: "3px 9px",
+      borderRadius: 20
+    }
+  }, unit.type))), /*#__PURE__*/React.createElement(FieldRow, {
+    label: "세입자명"
+  }, /*#__PURE__*/React.createElement("input", {
+    className: "input",
+    value: contract.tenant || "",
+    placeholder: "이름 입력",
+    onChange: e => updateContract("tenant", e.target.value)
+  })), /*#__PURE__*/React.createElement(FieldRow, {
+    label: "보증금(만원)"
+  }, /*#__PURE__*/React.createElement("input", {
+    className: "input",
+    type: "number",
+    value: contract.deposit ?? "",
+    onChange: e => updateContract("deposit", e.target.value)
+  })), /*#__PURE__*/React.createElement(FieldRow, {
+    label: "월세(만원)"
+  }, /*#__PURE__*/React.createElement("input", {
+    className: "input",
+    type: "number",
+    value: contract.rent ?? "",
+    onChange: e => updateContract("rent", e.target.value)
+  })), /*#__PURE__*/React.createElement(FieldRow, {
+    label: "계약만기일"
+  }, /*#__PURE__*/React.createElement("input", {
+    className: "input",
+    type: "date",
+    value: contract.endDate || "",
+    onChange: e => updateContract("endDate", e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 12,
+      paddingTop: 12,
+      borderTop: "1px solid #F0ECE1"
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 13,
+      color: "#6B6355",
+      fontWeight: 600,
+      display: "block",
+      marginBottom: 8
+    }
+  }, "계약서 사진"), /*#__PURE__*/React.createElement(ContractPhoto, {
+    ho: unit.ho
+  }))), /*#__PURE__*/React.createElement("div", {
+    className: "card",
+    style: {
+      padding: 16
+    }
+  }, /*#__PURE__*/React.createElement(SectionLabel, null, "보유 설비"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexWrap: "wrap",
+      gap: 8
+    }
+  }, REQUIRED_CATS.map(cat => {
+    const has = data.holdings[unit.ho]?.[cat] !== false;
+    return /*#__PURE__*/React.createElement("button", {
+      key: cat,
+      onClick: () => toggleHolding(cat),
       style: {
-        display: "flex",
-        gap: 8,
-        overflowX: "auto",
-        paddingBottom: 4
-      },
-      children: data.units.map(u => /*#__PURE__*/_jsxDEV("button", {
-        onClick: () => setSelectedUnit(u.ho),
-        style: {
-          flexShrink: 0,
-          padding: "7px 13px",
-          borderRadius: 20,
-          fontSize: 13,
-          fontWeight: 700,
-          border: u.ho === unit.ho ? "1.5px solid #2A2620" : "1px solid #DDD5C4",
-          background: u.ho === unit.ho ? "#2A2620" : "#FBF8F2",
-          color: u.ho === unit.ho ? "#EFEAE0" : "#4A453A",
-          cursor: "pointer"
-        },
-        children: u.ho
-      }, u.ho, false))
-    }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-      className: "card",
-      style: {
-        padding: 16
-      },
-      children: [/*#__PURE__*/_jsxDEV("div", {
-        style: {
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginBottom: 12
-        },
-        children: [/*#__PURE__*/_jsxDEV("div", {
-          style: {
-            fontSize: 17,
-            fontWeight: 800
-          },
-          children: unit.ho
-        }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-          style: {
-            display: "flex",
-            gap: 6,
-            alignItems: "center"
-          },
-          children: [/*#__PURE__*/_jsxDEV("button", {
-            onClick: () => updateContract("occupied", !(contract.occupied ?? true)),
-            style: {
-              fontSize: 11.5,
-              fontWeight: 700,
-              border: "none",
-              borderRadius: 20,
-              padding: "4px 11px",
-              cursor: "pointer",
-              background: contract.occupied ?? true ? "#EAF1E6" : "#F3E3DC",
-              color: contract.occupied ?? true ? "#4F6B48" : "#A85A3E"
-            },
-            children: contract.occupied ?? true ? "임대중" : "공실"
-          }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-            style: {
-              fontSize: 11.5,
-              fontWeight: 700,
-              color: "#fff",
-              background: TYPE_COLOR[unit.type],
-              padding: "3px 9px",
-              borderRadius: 20
-            },
-            children: unit.type
-          }, void 0, false)]
-        }, void 0, true)]
-      }, void 0, true), /*#__PURE__*/_jsxDEV(FieldRow, {
-        label: "세입자명",
-        children: /*#__PURE__*/_jsxDEV("input", {
-          className: "input",
-          value: contract.tenant || "",
-          placeholder: "이름 입력",
-          onChange: e => updateContract("tenant", e.target.value)
-        }, void 0, false)
-      }, void 0, false), /*#__PURE__*/_jsxDEV(FieldRow, {
-        label: "보증금(만원)",
-        children: /*#__PURE__*/_jsxDEV("input", {
-          className: "input",
-          type: "number",
-          value: contract.deposit ?? "",
-          onChange: e => updateContract("deposit", e.target.value)
-        }, void 0, false)
-      }, void 0, false), /*#__PURE__*/_jsxDEV(FieldRow, {
-        label: "월세(만원)",
-        children: /*#__PURE__*/_jsxDEV("input", {
-          className: "input",
-          type: "number",
-          value: contract.rent ?? "",
-          onChange: e => updateContract("rent", e.target.value)
-        }, void 0, false)
-      }, void 0, false), /*#__PURE__*/_jsxDEV(FieldRow, {
-        label: "계약만기일",
-        children: /*#__PURE__*/_jsxDEV("input", {
-          className: "input",
-          type: "date",
-          value: contract.endDate || "",
-          onChange: e => updateContract("endDate", e.target.value)
-        }, void 0, false)
-      }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-        style: {
-          marginTop: 12,
-          paddingTop: 12,
-          borderTop: "1px solid #F0ECE1"
-        },
-        children: [/*#__PURE__*/_jsxDEV("span", {
-          style: {
-            fontSize: 13,
-            color: "#6B6355",
-            fontWeight: 600,
-            display: "block",
-            marginBottom: 8
-          },
-          children: "계약서 사진"
-        }, void 0, false), /*#__PURE__*/_jsxDEV(ContractPhoto, {
-          ho: unit.ho
-        }, void 0, false)]
-      }, void 0, true)]
-    }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-      className: "card",
-      style: {
-        padding: 16
-      },
-      children: [/*#__PURE__*/_jsxDEV(SectionLabel, {
-        children: "보유 설비"
-      }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-        style: {
-          display: "flex",
-          flexWrap: "wrap",
-          gap: 8
-        },
-        children: REQUIRED_CATS.map(cat => {
-          const has = data.holdings[unit.ho]?.[cat] !== false;
-          return /*#__PURE__*/_jsxDEV("button", {
-            onClick: () => toggleHolding(cat),
-            style: {
-              padding: "6px 12px",
-              borderRadius: 20,
-              fontSize: 12.5,
-              fontWeight: 600,
-              cursor: "pointer",
-              border: has ? "1px solid #7C9A72" : "1px solid #DDD5C4",
-              background: has ? "#EAF1E6" : "#F3F0E8",
-              color: has ? "#4F6B48" : "#B5AC98"
-            },
-            children: [has ? /*#__PURE__*/_jsxDEV(Icon, {
-              name: "check",
-              size: 12
-            }, void 0, false) : null, " ", cat]
-          }, cat, true);
-        })
-      }, void 0, false)]
-    }, void 0, true), /*#__PURE__*/_jsxDEV(UnitRepairHistory, {
-      data: data,
-      setData: setData,
-      ho: unit.ho
-    }, void 0, false)]
-  }, void 0, true);
+        padding: "6px 12px",
+        borderRadius: 20,
+        fontSize: 12.5,
+        fontWeight: 600,
+        cursor: "pointer",
+        border: has ? "1px solid #7C9A72" : "1px solid #DDD5C4",
+        background: has ? "#EAF1E6" : "#F3F0E8",
+        color: has ? "#4F6B48" : "#B5AC98"
+      }
+    }, has ? /*#__PURE__*/React.createElement(Icon, {
+      name: "check",
+      size: 12
+    }) : null, " ", cat);
+  }))), /*#__PURE__*/React.createElement(UnitRepairHistory, {
+    data: data,
+    setData: setData,
+    ho: unit.ho
+  }));
 }
 function FieldRow({
   label,
   children
 }) {
-  return /*#__PURE__*/_jsxDEV("div", {
+  return /*#__PURE__*/React.createElement("div", {
     style: {
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
       padding: "9px 0",
       borderBottom: "1px solid #F0ECE1"
-    },
-    children: [/*#__PURE__*/_jsxDEV("span", {
-      style: {
-        fontSize: 13,
-        color: "#6B6355",
-        fontWeight: 600,
-        flexShrink: 0,
-        width: 92
-      },
-      children: label
-    }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-      style: {
-        flex: 1,
-        display: "flex",
-        justifyContent: "flex-end"
-      },
-      children: children
-    }, void 0, false)]
-  }, void 0, true);
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 13,
+      color: "#6B6355",
+      fontWeight: 600,
+      flexShrink: 0,
+      width: 92
+    }
+  }, label), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1,
+      display: "flex",
+      justifyContent: "flex-end"
+    }
+  }, children));
 }
 function UnitRepairHistory({
   data,
@@ -1597,111 +1483,95 @@ function UnitRepairHistory({
   }));
   const totalCost = logs.reduce((s, l) => s + (Number(l.cost) || 0), 0);
   const turnoverCost = logs.filter(l => l.turnover).reduce((s, l) => s + (Number(l.cost) || 0), 0);
-  return /*#__PURE__*/_jsxDEV("div", {
-    className: "card",
-    children: [/*#__PURE__*/_jsxDEV("div", {
-      style: {
-        padding: "12px 14px 4px",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        flexWrap: "wrap",
-        gap: 4
-      },
-      children: [/*#__PURE__*/_jsxDEV(SectionLabel, {
-        children: [ho, " 수리·설비 이력 (", logs.length, "건)"]
-      }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-        style: {
-          display: "flex",
-          gap: 8,
-          fontSize: 12,
-          color: "#8A8272",
-          fontWeight: 600
-        },
-        children: [totalCost > 0 && /*#__PURE__*/_jsxDEV("span", {
-          children: ["누적 ", fmtMoney(totalCost), "만원"]
-        }, void 0, true), turnoverCost > 0 && /*#__PURE__*/_jsxDEV("span", {
-          style: {
-            color: "#7A4F94"
-          },
-          children: ["세입자교체 ", fmtMoney(turnoverCost), "만원"]
-        }, void 0, true)]
-      }, void 0, true)]
-    }, void 0, true), logs.length === 0 && /*#__PURE__*/_jsxDEV(EmptyRow, {
-      text: "등록된 이력이 없습니다"
-    }, void 0, false), logs.map(l => /*#__PURE__*/_jsxDEV("div", {
-      className: "row",
-      style: {
-        alignItems: "flex-start"
-      },
-      children: [/*#__PURE__*/_jsxDEV("div", {
-        style: {
-          display: "flex",
-          flexDirection: "column",
-          gap: 2,
-          flex: 1
-        },
-        children: [/*#__PURE__*/_jsxDEV("div", {
-          style: {
-            display: "flex",
-            gap: 6,
-            alignItems: "center",
-            flexWrap: "wrap"
-          },
-          children: [/*#__PURE__*/_jsxDEV("span", {
-            style: {
-              fontSize: 11,
-              padding: "1px 7px",
-              borderRadius: 10,
-              background: "#F0ECE1",
-              color: "#6B6355"
-            },
-            children: l.cat
-          }, void 0, false), l.turnover && /*#__PURE__*/_jsxDEV("span", {
-            style: {
-              fontSize: 11,
-              padding: "1px 7px",
-              borderRadius: 10,
-              background: "#EDE0F2",
-              color: "#7A4F94",
-              fontWeight: 700
-            },
-            children: "세입자교체"
-          }, void 0, false), l.date && /*#__PURE__*/_jsxDEV("span", {
-            style: {
-              fontSize: 11,
-              color: "#B5AC98"
-            },
-            children: l.date
-          }, void 0, false)]
-        }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-          style: {
-            fontSize: 13.5
-          },
-          children: l.content
-        }, void 0, false), l.cost && /*#__PURE__*/_jsxDEV("div", {
-          style: {
-            fontSize: 12,
-            color: "#8A8272"
-          },
-          children: [l.cost, "만원"]
-        }, void 0, true)]
-      }, void 0, true), /*#__PURE__*/_jsxDEV("button", {
-        onClick: () => removeLog(l.id),
-        style: {
-          background: "none",
-          border: "none",
-          cursor: "pointer",
-          color: "#B5AC98",
-          padding: 4
-        },
-        children: /*#__PURE__*/_jsxDEV(Icon, {
-          name: "trash",
-          size: 15
-        }, void 0, false)
-      }, void 0, false)]
-    }, l.id, true))]
-  }, void 0, true);
+  return /*#__PURE__*/React.createElement("div", {
+    className: "card"
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: "12px 14px 4px",
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      flexWrap: "wrap",
+      gap: 4
+    }
+  }, /*#__PURE__*/React.createElement(SectionLabel, null, ho, " 수리·설비 이력 (", logs.length, "건)"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 8,
+      fontSize: 12,
+      color: "#8A8272",
+      fontWeight: 600
+    }
+  }, totalCost > 0 && /*#__PURE__*/React.createElement("span", null, "누적 ", fmtMoney(totalCost), "만원"), turnoverCost > 0 && /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: "#7A4F94"
+    }
+  }, "세입자교체 ", fmtMoney(turnoverCost), "만원"))), logs.length === 0 && /*#__PURE__*/React.createElement(EmptyRow, {
+    text: "등록된 이력이 없습니다"
+  }), logs.map(l => /*#__PURE__*/React.createElement("div", {
+    key: l.id,
+    className: "row",
+    style: {
+      alignItems: "flex-start"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      gap: 2,
+      flex: 1
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 6,
+      alignItems: "center",
+      flexWrap: "wrap"
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 11,
+      padding: "1px 7px",
+      borderRadius: 10,
+      background: "#F0ECE1",
+      color: "#6B6355"
+    }
+  }, l.cat), l.turnover && /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 11,
+      padding: "1px 7px",
+      borderRadius: 10,
+      background: "#EDE0F2",
+      color: "#7A4F94",
+      fontWeight: 700
+    }
+  }, "세입자교체"), l.date && /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 11,
+      color: "#B5AC98"
+    }
+  }, l.date)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 13.5
+    }
+  }, l.content), l.cost && /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: "#8A8272"
+    }
+  }, l.cost, "만원")), /*#__PURE__*/React.createElement("button", {
+    onClick: () => removeLog(l.id),
+    style: {
+      background: "none",
+      border: "none",
+      cursor: "pointer",
+      color: "#B5AC98",
+      padding: 4
+    }
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "trash",
+    size: 15
+  })))));
 }
 
 /* ===========================================================
@@ -1756,164 +1626,154 @@ function ContractPhoto({
     await save((photos || []).filter((_, i) => i !== idx));
     setPreview(null);
   };
-  if (loading) return /*#__PURE__*/_jsxDEV("div", {
+  if (loading) return /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 12.5,
       color: "#B5AC98",
       display: "flex",
       alignItems: "center",
       gap: 6
+    }
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "loader",
+    size: 13,
+    spin: true
+  }), " 불러오는 중");
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexWrap: "wrap",
+      gap: 8
+    }
+  }, (photos || []).map((p, i) => /*#__PURE__*/React.createElement("button", {
+    key: i,
+    onClick: () => setPreview(p),
+    style: {
+      width: 64,
+      height: 64,
+      borderRadius: 8,
+      overflow: "hidden",
+      border: "1px solid #DDD5C4",
+      padding: 0,
+      cursor: "pointer",
+      flexShrink: 0
+    }
+  }, /*#__PURE__*/React.createElement("img", {
+    src: p,
+    alt: `계약서 ${i + 1}`,
+    style: {
+      width: "100%",
+      height: "100%",
+      objectFit: "cover",
+      display: "block"
+    }
+  }))), /*#__PURE__*/React.createElement("label", {
+    style: {
+      width: 64,
+      height: 64,
+      borderRadius: 8,
+      border: "1.5px dashed #C9A96E",
+      background: "#F7EEDD",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      cursor: "pointer",
+      flexShrink: 0
+    }
+  }, busy ? /*#__PURE__*/React.createElement(Icon, {
+    name: "loader",
+    size: 18,
+    color: "#8A6A2E",
+    spin: true
+  }) : /*#__PURE__*/React.createElement(Icon, {
+    name: "plus",
+    size: 18,
+    color: "#8A6A2E"
+  }), /*#__PURE__*/React.createElement("input", {
+    type: "file",
+    accept: "image/*",
+    onChange: onFile,
+    style: {
+      display: "none"
     },
-    children: [/*#__PURE__*/_jsxDEV(Icon, {
-      name: "loader",
-      size: 13,
-      spin: true
-    }, void 0, false), " 불러오는 중"]
-  }, void 0, true);
-  return /*#__PURE__*/_jsxDEV("div", {
-    children: [/*#__PURE__*/_jsxDEV("div", {
-      style: {
-        display: "flex",
-        flexWrap: "wrap",
-        gap: 8
-      },
-      children: [(photos || []).map((p, i) => /*#__PURE__*/_jsxDEV("button", {
-        onClick: () => setPreview(p),
-        style: {
-          width: 64,
-          height: 64,
-          borderRadius: 8,
-          overflow: "hidden",
-          border: "1px solid #DDD5C4",
-          padding: 0,
-          cursor: "pointer",
-          flexShrink: 0
-        },
-        children: /*#__PURE__*/_jsxDEV("img", {
-          src: p,
-          alt: `계약서 ${i + 1}`,
-          style: {
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            display: "block"
-          }
-        }, void 0, false)
-      }, i, false)), /*#__PURE__*/_jsxDEV("label", {
-        style: {
-          width: 64,
-          height: 64,
-          borderRadius: 8,
-          border: "1.5px dashed #C9A96E",
-          background: "#F7EEDD",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          cursor: "pointer",
-          flexShrink: 0
-        },
-        children: [busy ? /*#__PURE__*/_jsxDEV(Icon, {
-          name: "loader",
-          size: 18,
-          color: "#8A6A2E",
-          spin: true
-        }, void 0, false) : /*#__PURE__*/_jsxDEV(Icon, {
-          name: "plus",
-          size: 18,
-          color: "#8A6A2E"
-        }, void 0, false), /*#__PURE__*/_jsxDEV("input", {
-          type: "file",
-          accept: "image/*",
-          onChange: onFile,
-          style: {
-            display: "none"
-          },
-          disabled: busy
-        }, void 0, false)]
-      }, void 0, true)]
-    }, void 0, true), (!photos || photos.length === 0) && !busy && /*#__PURE__*/_jsxDEV("div", {
-      style: {
-        fontSize: 11.5,
-        color: "#B5AC98",
-        marginTop: 6
-      },
-      children: "등록된 계약서 사진이 없습니다"
-    }, void 0, false), preview && /*#__PURE__*/_jsxDEV("div", {
-      onClick: () => setPreview(null),
-      style: {
-        position: "fixed",
-        inset: 0,
-        background: "rgba(20,17,12,0.88)",
-        zIndex: 100,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: 20
-      },
-      children: [/*#__PURE__*/_jsxDEV("img", {
-        src: preview,
-        alt: "계약서 확대",
-        style: {
-          maxWidth: "100%",
-          maxHeight: "78vh",
-          borderRadius: 8
-        }
-      }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-        style: {
-          display: "flex",
-          gap: 10,
-          marginTop: 16
-        },
-        children: [/*#__PURE__*/_jsxDEV("button", {
-          onClick: e => {
-            e.stopPropagation();
-            const idx = (photos || []).indexOf(preview);
-            removeAt(idx);
-          },
-          style: {
-            display: "flex",
-            alignItems: "center",
-            gap: 6,
-            padding: "9px 16px",
-            borderRadius: 10,
-            border: "none",
-            background: "#B0546A",
-            color: "#fff",
-            fontWeight: 700,
-            fontSize: 13,
-            cursor: "pointer"
-          },
-          children: [/*#__PURE__*/_jsxDEV(Icon, {
-            name: "trash",
-            size: 14
-          }, void 0, false), " 삭제"]
-        }, void 0, true), /*#__PURE__*/_jsxDEV("button", {
-          onClick: e => {
-            e.stopPropagation();
-            setPreview(null);
-          },
-          style: {
-            display: "flex",
-            alignItems: "center",
-            gap: 6,
-            padding: "9px 16px",
-            borderRadius: 10,
-            border: "none",
-            background: "#EFEAE0",
-            color: "#2A2620",
-            fontWeight: 700,
-            fontSize: 13,
-            cursor: "pointer"
-          },
-          children: [/*#__PURE__*/_jsxDEV(Icon, {
-            name: "x",
-            size: 14
-          }, void 0, false), " 닫기"]
-        }, void 0, true)]
-      }, void 0, true)]
-    }, void 0, true)]
-  }, void 0, true);
+    disabled: busy
+  }))), (!photos || photos.length === 0) && !busy && /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11.5,
+      color: "#B5AC98",
+      marginTop: 6
+    }
+  }, "등록된 계약서 사진이 없습니다"), preview && /*#__PURE__*/React.createElement("div", {
+    onClick: () => setPreview(null),
+    style: {
+      position: "fixed",
+      inset: 0,
+      background: "rgba(20,17,12,0.88)",
+      zIndex: 100,
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      padding: 20
+    }
+  }, /*#__PURE__*/React.createElement("img", {
+    src: preview,
+    alt: "계약서 확대",
+    style: {
+      maxWidth: "100%",
+      maxHeight: "78vh",
+      borderRadius: 8
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 10,
+      marginTop: 16
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: e => {
+      e.stopPropagation();
+      const idx = (photos || []).indexOf(preview);
+      removeAt(idx);
+    },
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 6,
+      padding: "9px 16px",
+      borderRadius: 10,
+      border: "none",
+      background: "#B0546A",
+      color: "#fff",
+      fontWeight: 700,
+      fontSize: 13,
+      cursor: "pointer"
+    }
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "trash",
+    size: 14
+  }), " 삭제"), /*#__PURE__*/React.createElement("button", {
+    onClick: e => {
+      e.stopPropagation();
+      setPreview(null);
+    },
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 6,
+      padding: "9px 16px",
+      borderRadius: 10,
+      border: "none",
+      background: "#EFEAE0",
+      color: "#2A2620",
+      fontWeight: 700,
+      fontSize: 13,
+      cursor: "pointer"
+    }
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "x",
+    size: 14
+  }), " 닫기"))));
 }
 
 /* ===========================================================
@@ -1957,216 +1817,197 @@ function ItemsTab({
     ...d,
     itemLogs: d.itemLogs.filter(l => l.id !== id)
   }));
-  return /*#__PURE__*/_jsxDEV("div", {
+  return /*#__PURE__*/React.createElement("div", {
     style: {
       display: "flex",
       flexDirection: "column",
       gap: 12
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 8,
+      overflowX: "auto"
+    }
+  }, ["전체", ...UNIT_ORDER].map(ho => /*#__PURE__*/React.createElement("button", {
+    key: ho,
+    onClick: () => setFilterUnit(ho),
+    style: {
+      flexShrink: 0,
+      padding: "6px 12px",
+      borderRadius: 20,
+      fontSize: 12.5,
+      fontWeight: 700,
+      border: filterUnit === ho ? "1.5px solid #2A2620" : "1px solid #DDD5C4",
+      background: filterUnit === ho ? "#2A2620" : "#FBF8F2",
+      color: filterUnit === ho ? "#EFEAE0" : "#4A453A",
+      cursor: "pointer"
+    }
+  }, ho))), /*#__PURE__*/React.createElement("button", {
+    className: "add-btn",
+    onClick: () => setShowForm(s => !s)
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "plus",
+    size: 15
+  }), " 이력 추가"), showForm && /*#__PURE__*/React.createElement("div", {
+    className: "card",
+    style: {
+      padding: 14,
+      display: "flex",
+      flexDirection: "column",
+      gap: 8
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 8
+    }
+  }, /*#__PURE__*/React.createElement("select", {
+    className: "input",
+    style: {
+      flex: 1
     },
-    children: [/*#__PURE__*/_jsxDEV("div", {
-      style: {
-        display: "flex",
-        gap: 8,
-        overflowX: "auto"
-      },
-      children: ["전체", ...UNIT_ORDER].map(ho => /*#__PURE__*/_jsxDEV("button", {
-        onClick: () => setFilterUnit(ho),
-        style: {
-          flexShrink: 0,
-          padding: "6px 12px",
-          borderRadius: 20,
-          fontSize: 12.5,
-          fontWeight: 700,
-          border: filterUnit === ho ? "1.5px solid #2A2620" : "1px solid #DDD5C4",
-          background: filterUnit === ho ? "#2A2620" : "#FBF8F2",
-          color: filterUnit === ho ? "#EFEAE0" : "#4A453A",
-          cursor: "pointer"
-        },
-        children: ho
-      }, ho, false))
-    }, void 0, false), /*#__PURE__*/_jsxDEV("button", {
-      className: "add-btn",
-      onClick: () => setShowForm(s => !s),
-      children: [/*#__PURE__*/_jsxDEV(Icon, {
-        name: "plus",
-        size: 15
-      }, void 0, false), " 이력 추가"]
-    }, void 0, true), showForm && /*#__PURE__*/_jsxDEV("div", {
-      className: "card",
-      style: {
-        padding: 14,
-        display: "flex",
-        flexDirection: "column",
-        gap: 8
-      },
-      children: [/*#__PURE__*/_jsxDEV("div", {
-        style: {
-          display: "flex",
-          gap: 8
-        },
-        children: [/*#__PURE__*/_jsxDEV("select", {
-          className: "input",
-          style: {
-            flex: 1
-          },
-          value: form.ho,
-          onChange: e => setForm(f => ({
-            ...f,
-            ho: e.target.value
-          })),
-          children: UNIT_ORDER.map(h => /*#__PURE__*/_jsxDEV("option", {
-            value: h,
-            children: h
-          }, h, false))
-        }, void 0, false), /*#__PURE__*/_jsxDEV("select", {
-          className: "input",
-          style: {
-            flex: 1
-          },
-          value: form.cat,
-          onChange: e => setForm(f => ({
-            ...f,
-            cat: e.target.value
-          })),
-          children: ALL_CATS.map(c => /*#__PURE__*/_jsxDEV("option", {
-            value: c,
-            children: c
-          }, c, false))
-        }, void 0, false)]
-      }, void 0, true), /*#__PURE__*/_jsxDEV("input", {
-        className: "input",
-        type: "date",
-        value: form.date,
-        onChange: e => setForm(f => ({
-          ...f,
-          date: e.target.value
-        }))
-      }, void 0, false), /*#__PURE__*/_jsxDEV("input", {
-        className: "input",
-        placeholder: "내용 (예: 보일러 PCB 수리)",
-        value: form.content,
-        onChange: e => setForm(f => ({
-          ...f,
-          content: e.target.value
-        }))
-      }, void 0, false), /*#__PURE__*/_jsxDEV("input", {
-        className: "input",
-        placeholder: "비용(만원, 선택)",
-        value: form.cost,
-        onChange: e => setForm(f => ({
-          ...f,
-          cost: e.target.value
-        }))
-      }, void 0, false), /*#__PURE__*/_jsxDEV("label", {
-        style: {
-          display: "flex",
-          alignItems: "center",
-          gap: 7,
-          fontSize: 13,
-          color: "#6B6355",
-          cursor: "pointer"
-        },
-        children: [/*#__PURE__*/_jsxDEV("input", {
-          type: "checkbox",
-          checked: form.turnover,
-          onChange: e => setForm(f => ({
-            ...f,
-            turnover: e.target.checked
-          }))
-        }, void 0, false), " 세입자 교체 시 발생한 비용"]
-      }, void 0, true), /*#__PURE__*/_jsxDEV("button", {
-        className: "save-btn",
-        onClick: addLog,
-        children: [/*#__PURE__*/_jsxDEV(Icon, {
-          name: "save",
-          size: 14
-        }, void 0, false), " 저장"]
-      }, void 0, true)]
-    }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-      className: "card",
-      children: [logs.length === 0 && /*#__PURE__*/_jsxDEV(EmptyRow, {
-        text: "등록된 이력이 없습니다"
-      }, void 0, false), logs.map(l => /*#__PURE__*/_jsxDEV("div", {
-        className: "row",
-        style: {
-          alignItems: "flex-start"
-        },
-        children: [/*#__PURE__*/_jsxDEV("div", {
-          style: {
-            display: "flex",
-            flexDirection: "column",
-            gap: 2,
-            flex: 1
-          },
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            style: {
-              display: "flex",
-              gap: 6,
-              alignItems: "center",
-              flexWrap: "wrap"
-            },
-            children: [/*#__PURE__*/_jsxDEV("span", {
-              style: {
-                fontSize: 11.5,
-                fontWeight: 800,
-                color: "#C97A4A"
-              },
-              children: l.ho
-            }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-              style: {
-                fontSize: 11,
-                padding: "1px 7px",
-                borderRadius: 10,
-                background: "#F0ECE1",
-                color: "#6B6355"
-              },
-              children: l.cat
-            }, void 0, false), l.turnover && /*#__PURE__*/_jsxDEV("span", {
-              style: {
-                fontSize: 11,
-                padding: "1px 7px",
-                borderRadius: 10,
-                background: "#EDE0F2",
-                color: "#7A4F94",
-                fontWeight: 700
-              },
-              children: "세입자교체"
-            }, void 0, false), l.date && /*#__PURE__*/_jsxDEV("span", {
-              style: {
-                fontSize: 11,
-                color: "#B5AC98"
-              },
-              children: l.date
-            }, void 0, false)]
-          }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              fontSize: 13.5
-            },
-            children: l.content
-          }, void 0, false), l.cost && /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              fontSize: 12,
-              color: "#8A8272"
-            },
-            children: [l.cost, "만원"]
-          }, void 0, true)]
-        }, void 0, true), /*#__PURE__*/_jsxDEV("button", {
-          onClick: () => removeLog(l.id),
-          style: {
-            background: "none",
-            border: "none",
-            cursor: "pointer",
-            color: "#B5AC98",
-            padding: 4
-          },
-          children: /*#__PURE__*/_jsxDEV(Icon, {
-            name: "trash",
-            size: 15
-          }, void 0, false)
-        }, void 0, false)]
-      }, l.id, true))]
-    }, void 0, true)]
-  }, void 0, true);
+    value: form.ho,
+    onChange: e => setForm(f => ({
+      ...f,
+      ho: e.target.value
+    }))
+  }, UNIT_ORDER.map(h => /*#__PURE__*/React.createElement("option", {
+    key: h,
+    value: h
+  }, h))), /*#__PURE__*/React.createElement("select", {
+    className: "input",
+    style: {
+      flex: 1
+    },
+    value: form.cat,
+    onChange: e => setForm(f => ({
+      ...f,
+      cat: e.target.value
+    }))
+  }, ALL_CATS.map(c => /*#__PURE__*/React.createElement("option", {
+    key: c,
+    value: c
+  }, c)))), /*#__PURE__*/React.createElement("input", {
+    className: "input",
+    type: "date",
+    value: form.date,
+    onChange: e => setForm(f => ({
+      ...f,
+      date: e.target.value
+    }))
+  }), /*#__PURE__*/React.createElement("input", {
+    className: "input",
+    placeholder: "내용 (예: 보일러 PCB 수리)",
+    value: form.content,
+    onChange: e => setForm(f => ({
+      ...f,
+      content: e.target.value
+    }))
+  }), /*#__PURE__*/React.createElement("input", {
+    className: "input",
+    placeholder: "비용(만원, 선택)",
+    value: form.cost,
+    onChange: e => setForm(f => ({
+      ...f,
+      cost: e.target.value
+    }))
+  }), /*#__PURE__*/React.createElement("label", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 7,
+      fontSize: 13,
+      color: "#6B6355",
+      cursor: "pointer"
+    }
+  }, /*#__PURE__*/React.createElement("input", {
+    type: "checkbox",
+    checked: form.turnover,
+    onChange: e => setForm(f => ({
+      ...f,
+      turnover: e.target.checked
+    }))
+  }), " 세입자 교체 시 발생한 비용"), /*#__PURE__*/React.createElement("button", {
+    className: "save-btn",
+    onClick: addLog
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "save",
+    size: 14
+  }), " 저장")), /*#__PURE__*/React.createElement("div", {
+    className: "card"
+  }, logs.length === 0 && /*#__PURE__*/React.createElement(EmptyRow, {
+    text: "등록된 이력이 없습니다"
+  }), logs.map(l => /*#__PURE__*/React.createElement("div", {
+    key: l.id,
+    className: "row",
+    style: {
+      alignItems: "flex-start"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      gap: 2,
+      flex: 1
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 6,
+      alignItems: "center",
+      flexWrap: "wrap"
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 11.5,
+      fontWeight: 800,
+      color: "#C97A4A"
+    }
+  }, l.ho), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 11,
+      padding: "1px 7px",
+      borderRadius: 10,
+      background: "#F0ECE1",
+      color: "#6B6355"
+    }
+  }, l.cat), l.turnover && /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 11,
+      padding: "1px 7px",
+      borderRadius: 10,
+      background: "#EDE0F2",
+      color: "#7A4F94",
+      fontWeight: 700
+    }
+  }, "세입자교체"), l.date && /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 11,
+      color: "#B5AC98"
+    }
+  }, l.date)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 13.5
+    }
+  }, l.content), l.cost && /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: "#8A8272"
+    }
+  }, l.cost, "만원")), /*#__PURE__*/React.createElement("button", {
+    onClick: () => removeLog(l.id),
+    style: {
+      background: "none",
+      border: "none",
+      cursor: "pointer",
+      color: "#B5AC98",
+      padding: 4
+    }
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "trash",
+    size: 15
+  }))))));
 }
 
 /* ===========================================================
@@ -2207,144 +2048,130 @@ function CommonTab({
     ...d,
     commonLogs: d.commonLogs.filter(l => l.id !== id)
   }));
-  return /*#__PURE__*/_jsxDEV("div", {
+  return /*#__PURE__*/React.createElement("div", {
     style: {
       display: "flex",
       flexDirection: "column",
       gap: 12
-    },
-    children: [/*#__PURE__*/_jsxDEV(SectionLabel, {
-      children: "건물 공용부 이력 (옥상·주차장·외벽 등)"
-    }, void 0, false), /*#__PURE__*/_jsxDEV("button", {
-      className: "add-btn",
-      onClick: () => setShowForm(s => !s),
-      children: [/*#__PURE__*/_jsxDEV(Icon, {
-        name: "plus",
-        size: 15
-      }, void 0, false), " 공용부 이력 추가"]
-    }, void 0, true), showForm && /*#__PURE__*/_jsxDEV("div", {
-      className: "card",
-      style: {
-        padding: 14,
-        display: "flex",
-        flexDirection: "column",
-        gap: 8
-      },
-      children: [/*#__PURE__*/_jsxDEV("input", {
-        className: "input",
-        type: "date",
-        value: form.date,
-        onChange: e => setForm(f => ({
-          ...f,
-          date: e.target.value
-        }))
-      }, void 0, false), /*#__PURE__*/_jsxDEV("input", {
-        className: "input",
-        placeholder: "위치 (예: 옥상, 주차장)",
-        value: form.loc,
-        onChange: e => setForm(f => ({
-          ...f,
-          loc: e.target.value
-        }))
-      }, void 0, false), /*#__PURE__*/_jsxDEV("input", {
-        className: "input",
-        placeholder: "내용",
-        value: form.content,
-        onChange: e => setForm(f => ({
-          ...f,
-          content: e.target.value
-        }))
-      }, void 0, false), /*#__PURE__*/_jsxDEV("input", {
-        className: "input",
-        placeholder: "비용(만원, 선택)",
-        value: form.cost,
-        onChange: e => setForm(f => ({
-          ...f,
-          cost: e.target.value
-        }))
-      }, void 0, false), /*#__PURE__*/_jsxDEV("input", {
-        className: "input",
-        placeholder: "비고 (예: 보험처리)",
-        value: form.note,
-        onChange: e => setForm(f => ({
-          ...f,
-          note: e.target.value
-        }))
-      }, void 0, false), /*#__PURE__*/_jsxDEV("button", {
-        className: "save-btn",
-        onClick: addLog,
-        children: [/*#__PURE__*/_jsxDEV(Icon, {
-          name: "save",
-          size: 14
-        }, void 0, false), " 저장"]
-      }, void 0, true)]
-    }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-      className: "card",
-      children: [logs.length === 0 && /*#__PURE__*/_jsxDEV(EmptyRow, {
-        text: "등록된 공용부 이력이 없습니다"
-      }, void 0, false), logs.map(l => /*#__PURE__*/_jsxDEV("div", {
-        className: "row",
-        style: {
-          alignItems: "flex-start"
-        },
-        children: [/*#__PURE__*/_jsxDEV("div", {
-          style: {
-            display: "flex",
-            flexDirection: "column",
-            gap: 2,
-            flex: 1
-          },
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            style: {
-              display: "flex",
-              gap: 6,
-              alignItems: "center"
-            },
-            children: [/*#__PURE__*/_jsxDEV("span", {
-              style: {
-                fontSize: 11,
-                padding: "1px 7px",
-                borderRadius: 10,
-                background: "#F0ECE1",
-                color: "#6B6355"
-              },
-              children: l.loc
-            }, void 0, false), l.date && /*#__PURE__*/_jsxDEV("span", {
-              style: {
-                fontSize: 11,
-                color: "#B5AC98"
-              },
-              children: l.date
-            }, void 0, false)]
-          }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              fontSize: 13.5
-            },
-            children: l.content
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              fontSize: 12,
-              color: "#8A8272"
-            },
-            children: [l.cost ? `${l.cost}만원` : "", l.cost && l.note ? " · " : "", l.note]
-          }, void 0, true)]
-        }, void 0, true), /*#__PURE__*/_jsxDEV("button", {
-          onClick: () => removeLog(l.id),
-          style: {
-            background: "none",
-            border: "none",
-            cursor: "pointer",
-            color: "#B5AC98",
-            padding: 4
-          },
-          children: /*#__PURE__*/_jsxDEV(Icon, {
-            name: "trash",
-            size: 15
-          }, void 0, false)
-        }, void 0, false)]
-      }, l.id, true))]
-    }, void 0, true)]
-  }, void 0, true);
+    }
+  }, /*#__PURE__*/React.createElement(SectionLabel, null, "건물 공용부 이력 (옥상·주차장·외벽 등)"), /*#__PURE__*/React.createElement("button", {
+    className: "add-btn",
+    onClick: () => setShowForm(s => !s)
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "plus",
+    size: 15
+  }), " 공용부 이력 추가"), showForm && /*#__PURE__*/React.createElement("div", {
+    className: "card",
+    style: {
+      padding: 14,
+      display: "flex",
+      flexDirection: "column",
+      gap: 8
+    }
+  }, /*#__PURE__*/React.createElement("input", {
+    className: "input",
+    type: "date",
+    value: form.date,
+    onChange: e => setForm(f => ({
+      ...f,
+      date: e.target.value
+    }))
+  }), /*#__PURE__*/React.createElement("input", {
+    className: "input",
+    placeholder: "위치 (예: 옥상, 주차장)",
+    value: form.loc,
+    onChange: e => setForm(f => ({
+      ...f,
+      loc: e.target.value
+    }))
+  }), /*#__PURE__*/React.createElement("input", {
+    className: "input",
+    placeholder: "내용",
+    value: form.content,
+    onChange: e => setForm(f => ({
+      ...f,
+      content: e.target.value
+    }))
+  }), /*#__PURE__*/React.createElement("input", {
+    className: "input",
+    placeholder: "비용(만원, 선택)",
+    value: form.cost,
+    onChange: e => setForm(f => ({
+      ...f,
+      cost: e.target.value
+    }))
+  }), /*#__PURE__*/React.createElement("input", {
+    className: "input",
+    placeholder: "비고 (예: 보험처리)",
+    value: form.note,
+    onChange: e => setForm(f => ({
+      ...f,
+      note: e.target.value
+    }))
+  }), /*#__PURE__*/React.createElement("button", {
+    className: "save-btn",
+    onClick: addLog
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "save",
+    size: 14
+  }), " 저장")), /*#__PURE__*/React.createElement("div", {
+    className: "card"
+  }, logs.length === 0 && /*#__PURE__*/React.createElement(EmptyRow, {
+    text: "등록된 공용부 이력이 없습니다"
+  }), logs.map(l => /*#__PURE__*/React.createElement("div", {
+    key: l.id,
+    className: "row",
+    style: {
+      alignItems: "flex-start"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      gap: 2,
+      flex: 1
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 6,
+      alignItems: "center"
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 11,
+      padding: "1px 7px",
+      borderRadius: 10,
+      background: "#F0ECE1",
+      color: "#6B6355"
+    }
+  }, l.loc), l.date && /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 11,
+      color: "#B5AC98"
+    }
+  }, l.date)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 13.5
+    }
+  }, l.content), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: "#8A8272"
+    }
+  }, l.cost ? `${l.cost}만원` : "", l.cost && l.note ? " · " : "", l.note)), /*#__PURE__*/React.createElement("button", {
+    onClick: () => removeLog(l.id),
+    style: {
+      background: "none",
+      border: "none",
+      cursor: "pointer",
+      color: "#B5AC98",
+      padding: 4
+    }
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "trash",
+    size: 15
+  }))))));
 }
 
 /* ===========================================================
@@ -2363,74 +2190,60 @@ function UtilityTab({
   }));
   const rowSum = u => UTIL_FIELDS.reduce((s, f) => s + (Number(u[f.key]) || 0), 0);
   const yearSum = data.utilities.reduce((s, u) => s + rowSum(u), 0);
-  return /*#__PURE__*/_jsxDEV("div", {
+  return /*#__PURE__*/React.createElement("div", {
     style: {
       display: "flex",
       flexDirection: "column",
       gap: 12
+    }
+  }, /*#__PURE__*/React.createElement(SectionLabel, null, "월별 공과금 (2026년, 단위: 만원)"), /*#__PURE__*/React.createElement(StatCard, {
+    label: "연간 합계",
+    value: `${fmtMoney(yearSum)}만`
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      overflowX: "auto"
     },
-    children: [/*#__PURE__*/_jsxDEV(SectionLabel, {
-      children: "월별 공과금 (2026년, 단위: 만원)"
-    }, void 0, false), /*#__PURE__*/_jsxDEV(StatCard, {
-      label: "연간 합계",
-      value: `${fmtMoney(yearSum)}만`
-    }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-      style: {
-        overflowX: "auto"
-      },
-      className: "card",
-      children: /*#__PURE__*/_jsxDEV("table", {
-        style: {
-          borderCollapse: "collapse",
-          width: "100%",
-          minWidth: 640
-        },
-        children: [/*#__PURE__*/_jsxDEV("thead", {
-          children: /*#__PURE__*/_jsxDEV("tr", {
-            style: {
-              background: "#2A2620"
-            },
-            children: [/*#__PURE__*/_jsxDEV("th", {
-              className: "th",
-              children: "연월"
-            }, void 0, false), UTIL_FIELDS.map(f => /*#__PURE__*/_jsxDEV("th", {
-              className: "th",
-              children: f.label
-            }, f.key, false)), /*#__PURE__*/_jsxDEV("th", {
-              className: "th",
-              children: "합계"
-            }, void 0, false)]
-          }, void 0, true)
-        }, void 0, false), /*#__PURE__*/_jsxDEV("tbody", {
-          children: data.utilities.map(u => /*#__PURE__*/_jsxDEV("tr", {
-            children: [/*#__PURE__*/_jsxDEV("td", {
-              className: "td",
-              style: {
-                fontWeight: 700
-              },
-              children: u.month
-            }, void 0, false), UTIL_FIELDS.map(f => /*#__PURE__*/_jsxDEV("td", {
-              className: "td",
-              children: /*#__PURE__*/_jsxDEV("input", {
-                className: "cell-input",
-                type: "number",
-                value: u[f.key],
-                onChange: e => update(u.id, f.key, e.target.value),
-                placeholder: "0"
-              }, void 0, false)
-            }, f.key, false)), /*#__PURE__*/_jsxDEV("td", {
-              className: "td",
-              style: {
-                fontWeight: 700,
-                color: "#C97A4A"
-              },
-              children: fmtMoney(rowSum(u))
-            }, void 0, false)]
-          }, u.id, true))
-        }, void 0, false)]
-      }, void 0, true)
-    }, void 0, false)]
-  }, void 0, true);
+    className: "card"
+  }, /*#__PURE__*/React.createElement("table", {
+    style: {
+      borderCollapse: "collapse",
+      width: "100%",
+      minWidth: 640
+    }
+  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", {
+    style: {
+      background: "#2A2620"
+    }
+  }, /*#__PURE__*/React.createElement("th", {
+    className: "th"
+  }, "연월"), UTIL_FIELDS.map(f => /*#__PURE__*/React.createElement("th", {
+    key: f.key,
+    className: "th"
+  }, f.label)), /*#__PURE__*/React.createElement("th", {
+    className: "th"
+  }, "합계"))), /*#__PURE__*/React.createElement("tbody", null, data.utilities.map(u => /*#__PURE__*/React.createElement("tr", {
+    key: u.id
+  }, /*#__PURE__*/React.createElement("td", {
+    className: "td",
+    style: {
+      fontWeight: 700
+    }
+  }, u.month), UTIL_FIELDS.map(f => /*#__PURE__*/React.createElement("td", {
+    key: f.key,
+    className: "td"
+  }, /*#__PURE__*/React.createElement("input", {
+    className: "cell-input",
+    type: "number",
+    value: u[f.key],
+    onChange: e => update(u.id, f.key, e.target.value),
+    placeholder: "0"
+  }))), /*#__PURE__*/React.createElement("td", {
+    className: "td",
+    style: {
+      fontWeight: 700,
+      color: "#C97A4A"
+    }
+  }, fmtMoney(rowSum(u)))))))));
 }
 
 /* ===========================================================
@@ -2452,63 +2265,50 @@ function StatsTab({
   const annualRent = data.units.reduce((s, u) => s + (Number(data.contracts[u.ho]?.rent) || 0), 0) * 12;
   const occupiedCount = data.units.filter(u => (data.contracts[u.ho]?.occupied ?? true) !== false).length;
   const occupancyRate = Math.round(occupiedCount / data.units.length * 100);
-  return /*#__PURE__*/_jsxDEV("div", {
+  return /*#__PURE__*/React.createElement("div", {
     style: {
       display: "flex",
       flexDirection: "column",
       gap: 16
-    },
-    children: [/*#__PURE__*/_jsxDEV("section", {
-      style: {
-        display: "flex",
-        gap: 10
-      },
-      children: [/*#__PURE__*/_jsxDEV(StatCard, {
-        label: "연 임대료 환산",
-        value: `${fmtMoney(annualRent)}만`
-      }, void 0, false), /*#__PURE__*/_jsxDEV(StatCard, {
-        label: "임대율",
-        value: `${occupancyRate}%`
-      }, void 0, false)]
-    }, void 0, true), /*#__PURE__*/_jsxDEV("section", {
-      style: {
-        display: "flex",
-        gap: 10
-      },
-      children: [/*#__PURE__*/_jsxDEV(StatCard, {
-        label: "누적 수리비",
-        value: `${fmtMoney(totalRepairCost)}만`
-      }, void 0, false), /*#__PURE__*/_jsxDEV(StatCard, {
-        label: "세입자교체 비용",
-        value: `${fmtMoney(turnoverCost)}만`,
-        accent: true
-      }, void 0, false)]
-    }, void 0, true), /*#__PURE__*/_jsxDEV("section", {
-      children: [/*#__PURE__*/_jsxDEV(SectionLabel, {
-        children: "세대별 누적 수리비 (만원)"
-      }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-        className: "card",
-        children: /*#__PURE__*/_jsxDEV(SimpleBarChart, {
-          data: repairByUnit,
-          labelKey: "ho",
-          valueKey: "cost"
-        }, void 0, false)
-      }, void 0, false)]
-    }, void 0, true), /*#__PURE__*/_jsxDEV("section", {
-      children: [/*#__PURE__*/_jsxDEV(SectionLabel, {
-        children: "월별 공과금 합계 추이 (2026, 만원)"
-      }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-        className: "card",
-        children: /*#__PURE__*/_jsxDEV(SimpleLineChart, {
-          data: utilByMonth,
-          labelKey: "month",
-          valueKey: "total"
-        }, void 0, false)
-      }, void 0, false)]
-    }, void 0, true)]
-  }, void 0, true);
+    }
+  }, /*#__PURE__*/React.createElement("section", {
+    style: {
+      display: "flex",
+      gap: 10
+    }
+  }, /*#__PURE__*/React.createElement(StatCard, {
+    label: "연 임대료 환산",
+    value: `${fmtMoney(annualRent)}만`
+  }), /*#__PURE__*/React.createElement(StatCard, {
+    label: "임대율",
+    value: `${occupancyRate}%`
+  })), /*#__PURE__*/React.createElement("section", {
+    style: {
+      display: "flex",
+      gap: 10
+    }
+  }, /*#__PURE__*/React.createElement(StatCard, {
+    label: "누적 수리비",
+    value: `${fmtMoney(totalRepairCost)}만`
+  }), /*#__PURE__*/React.createElement(StatCard, {
+    label: "세입자교체 비용",
+    value: `${fmtMoney(turnoverCost)}만`,
+    accent: true
+  })), /*#__PURE__*/React.createElement("section", null, /*#__PURE__*/React.createElement(SectionLabel, null, "세대별 누적 수리비 (만원)"), /*#__PURE__*/React.createElement("div", {
+    className: "card"
+  }, /*#__PURE__*/React.createElement(SimpleBarChart, {
+    data: repairByUnit,
+    labelKey: "ho",
+    valueKey: "cost"
+  }))), /*#__PURE__*/React.createElement("section", null, /*#__PURE__*/React.createElement(SectionLabel, null, "월별 공과금 합계 추이 (2026, 만원)"), /*#__PURE__*/React.createElement("div", {
+    className: "card"
+  }, /*#__PURE__*/React.createElement(SimpleLineChart, {
+    data: utilByMonth,
+    labelKey: "month",
+    valueKey: "total"
+  }))));
 }
-ReactDOM.createRoot(document.getElementById("root")).render(/*#__PURE__*/_jsxDEV(PropertyApp, {}, void 0, false));
+ReactDOM.createRoot(document.getElementById("root")).render(/*#__PURE__*/React.createElement(PropertyApp, null));
 </script>
 </body>
 </html>
