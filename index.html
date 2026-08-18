@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>다가구 관리대장</title>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; background:#EFEAE0; }
+  body { font-family:'Pretendard','Noto Sans KR',-apple-system,'Malgun Gothic',sans-serif; color:#2A2620; }
+  .card { background:#FBF8F2; border:1px solid #E4DDCC; border-radius:14px; overflow:hidden; }
+  .row { display:flex; align-items:center; justify-content:space-between; padding:12px 14px; border-bottom:1px solid #F0ECE1; cursor:pointer; }
+  .row:last-child { border-bottom:none; }
+  .input { border:1px solid #DDD5C4; border-radius:8px; padding:7px 10px; font-size:13.5px; background:#fff; color:#2A2620; font-family:inherit; width:100%; }
+  .input:focus { outline:2px solid #C97A4A; outline-offset:1px; }
+  .add-btn { display:flex; align-items:center; justify-content:center; gap:6px; padding:10px; border-radius:10px; border:1.5px dashed #C9A96E; background:#F7EEDD; color:#8A6A2E; font-weight:700; font-size:13.5px; cursor:pointer; width:100%; }
+  .save-btn { display:flex; align-items:center; justify-content:center; gap:6px; padding:10px; border-radius:10px; border:none; background:#2A2620; color:#EFEAE0; font-weight:700; font-size:13.5px; cursor:pointer; width:100%; }
+  .th { color:#EFEAE0; font-size:11.5px; font-weight:700; padding:9px 10px; text-align:left; white-space:nowrap; }
+  .td { padding:6px 8px; border-bottom:1px solid #F0ECE1; font-size:12.5px; white-space:nowrap; }
+  .cell-input { width:60px; border:1px solid #E4DDCC; border-radius:6px; padding:4px 6px; font-size:12.5px; font-family:inherit; }
+  .cell-input:focus { outline:2px solid #C97A4A; }
+  button:focus-visible, input:focus-visible, select:focus-visible { outline:2px solid #C97A4A; outline-offset:1px; }
+  .spin { animation: spin 1s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  button { font-family:inherit; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" data-presets="react">
+const { useState, useEffect, useMemo } = React;
+
+/* ===========================================================
+   아이콘 (간단한 인라인 SVG 세트)
+=========================================================== */
+function Icon({ name, size=18, color="currentColor", spin=false }) {
+  const common = { width:size, height:size, viewBox:"0 0 24 24", fill:"none", stroke:color, strokeWidth:2, strokeLinecap:"round", strokeLinejoin:"round" };
+  const paths = {
+    building: <><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M9 8h1M14 8h1M9 12h1M14 12h1M9 16h1M14 16h1"/></>,
+    home: <><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></>,
+    file: <><path d="M6 3h9l5 5v13H6z"/><path d="M15 3v5h5"/></>,
+    wrench: <path d="M14.7 6.3a4 4 0 1 0-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 0 5.4-5.4l-2.8 2.8-2-2z"/>,
+    zap: <path d="M13 2 4 14h6l-1 8 9-12h-6z"/>,
+    chart: <><path d="M4 20V10M12 20V4M20 20v-6"/></>,
+    plus: <><path d="M12 5v14M5 12h14"/></>,
+    x: <><path d="M18 6 6 18M6 6l12 12"/></>,
+    check: <path d="M20 6 9 17l-5-5"/>,
+    chevron: <path d="M9 6l6 6-6 6"/>,
+    warn: <><path d="M12 2 1 21h22z"/><path d="M12 9v5M12 17h.01"/></>,
+    trash: <><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></>,
+    save: <><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M9 21v-8h6v8M9 3v5h6"/></>,
+    gear: <><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6V21a2 2 0 1 1-4 0v-.2a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.6-1H3a2 2 0 1 1 0-4h.2a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.6V3a2 2 0 1 1 4 0v.2a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.6 1H21a2 2 0 1 1 0 4h-.2a1.7 1.7 0 0 0-1.6 1z"/></>,
+    loader: <path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/>,
+  };
+  return <svg {...common} style={spin?{animation:"spin 1s linear infinite"}:undefined}>{paths[name]||null}</svg>;
+}
+
+/* ===========================================================
+   저장소 (구글 앱스크립트 백엔드 or 로컬 폴백)
+=========================================================== */
+const CONFIG_KEY = "property-app-remote-url";
+function getRemoteUrl() { return localStorage.getItem(CONFIG_KEY) || ""; }
+function setRemoteUrl(url) { localStorage.setItem(CONFIG_KEY, url); }
+
+const Storage = {
+  async get(key) {
+    const remote = getRemoteUrl();
+    if (!remote) {
+      const v = localStorage.getItem("local:"+key);
+      return v !== null ? { key, value: v } : null;
+    }
+    const res = await fetch(`${remote}?key=${encodeURIComponent(key)}`);
+    const json = await res.json();
+    return (json.value !== undefined && json.value !== null && json.value !== "") ? { key, value: json.value } : null;
+  },
+  async set(key, value) {
+    const remote = getRemoteUrl();
+    if (!remote) {
+      localStorage.setItem("local:"+key, value);
+      return { key, value };
+    }
+    await fetch(remote, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify({ key, value }),
+    });
+    return { key, value };
+  },
+};
+
+/* ===========================================================
+   초기 데이터
+=========================================================== */
+const UNIT_ORDER = ["101호","102호","103호","105호","201호","202호","203호","205호","301호","302호","303호"];
+const FLOOR_LAYOUT = [
+  { floor: 1, cells: ["101호","102호","103호","105호"] },
+  { floor: 2, cells: ["201호","202호","203호","205호"] },
+  { floor: 3, cells: ["301호","302호","303호",null] },
+];
+const INITIAL_UNITS = [
+  { ho: "101호", type: "원룸" }, { ho: "102호", type: "미투룸" }, { ho: "103호", type: "정투룸" },
+  { ho: "105호", type: "원룸" }, { ho: "201호", type: "원룸" }, { ho: "202호", type: "미투룸" },
+  { ho: "203호", type: "정투룸" }, { ho: "205호", type: "원룸" }, { ho: "301호", type: "원룸" },
+  { ho: "302호", type: "주인세대" }, { ho: "303호", type: "원룸" },
+];
+const INITIAL_CONTRACTS = {
+  "101호": { deposit:200, rent:33, endDate:"2027-02-10", tenant:"", occupied:true },
+  "102호": { deposit:300, rent:38, endDate:"2023-10-31", tenant:"", occupied:true },
+  "103호": { deposit:1000, rent:50, endDate:"2026-04-12", tenant:"", occupied:true },
+  "105호": { deposit:500, rent:30, endDate:"2025-08-19", tenant:"", occupied:true },
+  "201호": { deposit:100, rent:27, endDate:"2025-09-30", tenant:"", occupied:true },
+  "202호": { deposit:200, rent:40, endDate:"2025-09-12", tenant:"", occupied:true },
+  "203호": { deposit:500, rent:48, endDate:"2021-07-06", tenant:"", occupied:true },
+  "205호": { deposit:200, rent:30, endDate:"2026-02-16", tenant:"", occupied:true },
+  "301호": { deposit:200, rent:29, endDate:"2027-05-31", tenant:"", occupied:true },
+  "302호": { deposit:8000, rent:9, endDate:"2026-12-05", tenant:"", occupied:true },
+  "303호": { deposit:2500, rent:5, endDate:"2021-08-20", tenant:"", occupied:true },
+};
+const REQUIRED_CATS = ["TV","냉장고","세탁기","보일러","가스렌지/후드","에어컨"];
+const LOG_ONLY_CATS = ["도배","청소","욕실/베란다","빨래건조대","코킹(창문)","기타수선"];
+const ALL_CATS = [...REQUIRED_CATS, ...LOG_ONLY_CATS];
+
+let _id = 1;
+const nid = () => `id${_id++}_${Math.random().toString(36).slice(2,7)}`;
+
+const RAW_LOGS = [
+  ["101호","TV","2023-11-07","43 UMAX TV+선반",""],["101호","냉장고","2023-02-11","클라세 236L",""],
+  ["101호","세탁기","2023-02-11","대우 15kg",""],["101호","보일러","2020-12-15","점화기 수리","5.5"],
+  ["101호","가스렌지/후드","2023-02-11","가스렌지/후드 교체",""],["101호","에어컨","2021-06-17","삼성에어컨 교체","45"],
+  ["101호","욕실/베란다","","욕실장 교체, 등교체, 세면대 수전 교체",""],["101호","빨래건조대","","교체",""],
+  ["102호","TV","2020-04-01","UMAX TV43L+선반",""],["102호","냉장고","2019-03-31","클라쎄 243L",""],
+  ["102호","보일러","2023-08-14","PCB 보일러 수리","14"],["102호","도배","2021-05-07","방 석고보드 수리","15"],
+  ["102호","욕실/베란다","2021-04-23","욕실 타일 일부 수리","15"],["102호","욕실/베란다","2020-01-07","거실등 교체",""],
+  ["102호","빨래건조대","","교체",""],
+  ["103호","냉장고","2025-04-14","삼성 255L",""],["103호","세탁기","2025-04-14","LG 15kg",""],
+  ["103호","보일러","2021-01-30","보일러수리 모터","8.5"],["103호","가스렌지/후드","2026-07-16","후드 교체","10"],
+  ["103호","에어컨","2022-07-08","삼성에어컨 교체","50"],["103호","도배","2025-04-15","전체 도배",""],
+  ["103호","욕실/베란다","","화장실 콘센트 수리","6.5"],["103호","욕실/베란다","2019-08-20","방등, 현관 센서등 교체, 욕실장 교체",""],
+  ["103호","욕실/베란다","2025-07-03","베란다 바닥 미장, 방 환풍구 누수(보험처리)",""],["103호","욕실/베란다","2025-07-11","베란다 세탁실 하부 타일 작업","25"],
+  ["105호","TV","","43인치 UMAX TV+선반",""],["105호","냉장고","2019-08-09","클라세 243L",""],
+  ["105호","보일러","2025-04-16","보일러 교체(대성)","65"],["105호","에어컨","2025-06-16","냉매 충전","6"],
+  ["105호","욕실/베란다","2019-08-20","주방,욕실,베란다 등 교체",""],
+  ["201호","TV","2018-08-17","40인치(스마트라)+선반",""],["201호","보일러","2018-09-16","보일러 거버너 수리","9"],
+  ["201호","가스렌지/후드","2025-10-02","후드 교체","10"],["201호","에어컨","2025-07-11","냉매 충전","6"],
+  ["201호","욕실/베란다","2018-07-03","욕실장 교체, 등교체",""],["201호","빨래건조대","2025-10-02","교체",""],
+  ["202호","TV","","유맥스 UHD43L+선반",""],["202호","냉장고","2025-08-21","삼성 255L",""],
+  ["202호","세탁기","2021-08-31","위니아 14kg",""],["202호","보일러","2023-09-14","보일러 PCB 수리","12"],
+  ["202호","보일러","2021-08-25","보일러 모터 교체","9.5"],["202호","가스렌지/후드","2025-09-09","가스렌지 교체","12"],
+  ["202호","에어컨","2022-05-12","삼성에어컨 교체","50"],["202호","도배","2025-08-25","전체 도배",""],
+  ["202호","욕실/베란다","2019-06-18","욕실 전체공사, 전등교체",""],["202호","코킹(창문)","","2508 상태 좋음(점검)",""],
+  ["203호","보일러","2025-10-02","보일러 PCB등 수리","23.7"],["203호","코킹(창문)","2025-07-03","창문전체 코킹",""],
+  ["205호","TV","","32인치 TV+선반(셋톱박스 교체)",""],["205호","냉장고","2022-06-19","위니아 248L",""],
+  ["205호","세탁기","2022-06-19","위니아 12kg",""],["205호","보일러","","보일러 수리","15"],
+  ["205호","가스렌지/후드","2022-07-05","가스렌지 교체",""],["205호","에어컨","2022-06-19","삼성에어컨 교체","50"],
+  ["205호","욕실/베란다","2022-06-19","욕실장,수전,전등,콘센트 커버 전체교체",""],["205호","욕실/베란다","2022-06-19","베란다 페인트","30"],
+  ["205호","빨래건조대","","교체",""],
+  ["301호","TV","","32인치 TV+선반",""],["301호","냉장고","2021-03-20","클라세 243L",""],
+  ["301호","세탁기","2021-03-20","클라세 12kg",""],["301호","보일러","2026-08-14","PCB 보일러수리","14"],
+  ["301호","가스렌지/후드","2022-06-10","가스렌지 교체",""],["301호","도배","2021-03-21","전체 도배",""],
+  ["301호","욕실/베란다","2021-03-10","화장실, 싱크수전, 화장실문 교체",""],["301호","빨래건조대","","교체",""],
+  ["302호","보일러","2020-04-11","PCB 보일러수리","12.5"],["302호","보일러","2026-06-15","PCB 보일러수리","14"],
+  ["302호","가스렌지/후드","2024-12-01","렌지/후드 교체",""],["302호","도배","2024-12-01","전체 도배",""],
+  ["302호","욕실/베란다","2024-12-01","욕실 전체수리(철부)",""],["302호","빨래건조대","","교체",""],
+  ["302호","코킹(창문)","2025-07-03","창문전체 코킹",""],
+  ["303호","TV","","32인치 TV",""],["303호","보일러","2025-03-05","PCB 보일러수리","13.6"],
+  ["303호","에어컨","2020-06-08","캐리어 6평 교체","42"],["303호","에어컨","2025-07-11","냉매충전, 누설 재작업","10"],
+  ["303호","욕실/베란다","2018-07-07","LED 전등교체",""],["303호","코킹(창문)","2025-07-03","창문전체 코킹",""],
+].map(([ho,cat,date,content,cost]) => ({ id: nid(), ho, cat, date, content, cost }));
+
+const RAW_COMMON = [
+  { id: nid(), date:"2022-05-20", loc:"옥상,주차장", content:"바닥 전체 방수작업", cost:"", note:"" },
+  { id: nid(), date:"2024-06-30", loc:"옥상", content:"배수관 청소", cost:"30", note:"" },
+  { id: nid(), date:"2025-04-04", loc:"옥상", content:"방화문 교체", cost:"30", note:"" },
+  { id: nid(), date:"2025-07-03", loc:"옥상,외벽", content:"바닥 및 외벽 틈새 코킹", cost:"", note:"보험처리" },
+];
+
+const MONTHS_2026 = Array.from({length:12}, (_,i)=>`2026-${String(i+1).padStart(2,"0")}`);
+const INITIAL_UTIL = MONTHS_2026.map(m => ({ id: nid(), month:m, cleaning:"", management:"", water:"", electric:"", etc:"", note:"" }));
+
+const INITIAL_HOLDINGS = {};
+UNIT_ORDER.forEach(ho => { INITIAL_HOLDINGS[ho] = {}; REQUIRED_CATS.forEach(cat => { INITIAL_HOLDINGS[ho][cat] = true; }); });
+
+const DEFAULT_DATA = {
+  units: INITIAL_UNITS, contracts: INITIAL_CONTRACTS, holdings: INITIAL_HOLDINGS,
+  itemLogs: RAW_LOGS, commonLogs: RAW_COMMON, utilities: INITIAL_UTIL,
+};
+const STORAGE_KEY = "property-app-data-v1";
+
+const UTIL_FIELDS = [
+  { key:"cleaning", label:"청소비" }, { key:"management", label:"관리비" },
+  { key:"water", label:"공용수도세" }, { key:"electric", label:"공동전기세" }, { key:"etc", label:"기타" },
+];
+
+/* ===========================================================
+   유틸
+=========================================================== */
+const fmtMoney = (n) => {
+  const v = Number(n);
+  if (!n && n !== 0) return "-";
+  if (Number.isNaN(v)) return n;
+  return v.toLocaleString("ko-KR");
+};
+const daysUntil = (dateStr) => {
+  if (!dateStr) return null;
+  const target = new Date(dateStr);
+  if (Number.isNaN(target.getTime())) return null;
+  const today = new Date(); today.setHours(0,0,0,0);
+  return Math.round((target - today) / 86400000);
+};
+const overdueLabel = (dateStr, days) => {
+  if (days >= 0) return `D-${days}`;
+  const absDays = Math.abs(days);
+  if (absDays <= 30) return `${absDays}일 경과`;
+  const end = new Date(dateStr);
+  const today = new Date(); today.setHours(0,0,0,0);
+  let months = (today.getFullYear()-end.getFullYear())*12 + (today.getMonth()-end.getMonth());
+  if (today.getDate() < end.getDate()) months -= 1;
+  if (months < 12) return `${months}개월 경과`;
+  const years = Math.floor(months/12), rem = months%12;
+  return rem===0 ? `${years}년 경과` : `${years}년 ${rem}개월 경과`;
+};
+const TYPE_COLOR = { "원룸":"#7C9A92", "미투룸":"#C08A5C", "정투룸":"#6E7DA6", "주인세대":"#B0546A" };
+
+function compressImage(file, maxDim=1100, quality=0.62) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const img = new Image();
+      img.onload = () => {
+        let { width, height } = img;
+        if (width > height && width > maxDim) { height = Math.round(height*maxDim/width); width = maxDim; }
+        else if (height > maxDim) { width = Math.round(width*maxDim/height); height = maxDim; }
+        const canvas = document.createElement("canvas");
+        canvas.width = width; canvas.height = height;
+        canvas.getContext("2d").drawImage(img, 0, 0, width, height);
+        resolve(canvas.toDataURL("image/jpeg", quality));
+      };
+      img.onerror = reject;
+      img.src = reader.result;
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+/* ===========================================================
+   간단 차트 (외부 라이브러리 없이 순수 CSS/SVG)
+=========================================================== */
+function SimpleBarChart({ data, labelKey, valueKey }) {
+  const max = Math.max(1, ...data.map(d => d[valueKey]));
+  return (
+    <div style={{display:"flex", alignItems:"flex-end", gap:6, height:160, padding:"8px 6px"}}>
+      {data.map((d,i) => (
+        <div key={i} style={{flex:1, display:"flex", flexDirection:"column", alignItems:"center", gap:4}}>
+          <div style={{fontSize:10, color:"#8A8272"}}>{d[valueKey]>0 ? d[valueKey] : ""}</div>
+          <div style={{
+            width:"100%", borderRadius:"4px 4px 0 0",
+            height: Math.max(3, (d[valueKey]/max)*110),
+            background: d[valueKey] > max*0.6 ? "#C97A4A" : "#D8B98A",
+          }} />
+          <div style={{fontSize:10, color:"#6B6355", fontWeight:600}}>{d[labelKey]}</div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function SimpleLineChart({ data, labelKey, valueKey }) {
+  const W = 320, H = 140, pad = 8;
+  const max = Math.max(1, ...data.map(d => d[valueKey]));
+  const stepX = (W - pad*2) / Math.max(1, data.length-1);
+  const points = data.map((d,i) => {
+    const x = pad + i*stepX;
+    const y = H - pad - (d[valueKey]/max)*(H-pad*2);
+    return `${x},${y}`;
+  }).join(" ");
+  return (
+    <div style={{padding:"8px 6px", overflowX:"auto"}}>
+      <svg viewBox={`0 0 ${W} ${H}`} style={{width:"100%", height:140}}>
+        <polyline points={points} fill="none" stroke="#C97A4A" strokeWidth="2.4" strokeLinejoin="round" strokeLinecap="round" />
+        {data.map((d,i) => {
+          const x = pad + i*stepX, y = H - pad - (d[valueKey]/max)*(H-pad*2);
+          return <circle key={i} cx={x} cy={y} r="2.6" fill="#C97A4A" />;
+        })}
+      </svg>
+      <div style={{display:"flex", justifyContent:"space-between", fontSize:9.5, color:"#8A8272", padding:"0 4px"}}>
+        {data.filter((_,i)=> i%2===0).map((d,i) => <span key={i}>{d[labelKey]}</span>)}
+      </div>
+    </div>
+  );
+}
+
+/* ===========================================================
+   설정 화면 (Apps Script URL 연결)
+=========================================================== */
+function SetupScreen({ onDone }) {
+  const [url, setUrl] = useState(getRemoteUrl());
+  const [mode, setMode] = useState(getRemoteUrl() ? "remote" : null);
+
+  const saveAndContinue = () => {
+    if (mode === "remote") {
+      if (!url.trim()) { alert("웹앱 URL을 입력해주세요."); return; }
+      setRemoteUrl(url.trim());
+    } else {
+      setRemoteUrl("");
+    }
+    onDone();
+  };
+
+  return (
+    <div style={{minHeight:"100vh", background:"#EFEAE0", display:"flex", alignItems:"center", justifyContent:"center", padding:20}}>
+      <div className="card" style={{maxWidth:420, width:"100%", padding:22}}>
+        <div style={{fontSize:11, letterSpacing:2, color:"#9A8F73", fontWeight:700}}>PROPERTY LEDGER</div>
+        <div style={{fontSize:19, fontWeight:800, marginTop:4, marginBottom:14}}>데이터 저장 방식 선택</div>
+
+        <div style={{display:"flex", flexDirection:"column", gap:8, marginBottom:16}}>
+          <label className="card" style={{padding:12, display:"flex", gap:10, alignItems:"flex-start", cursor:"pointer", border: mode==="remote" ? "1.5px solid #2A2620" : "1px solid #E4DDCC"}}>
+            <input type="radio" checked={mode==="remote"} onChange={()=>setMode("remote")} style={{marginTop:3}} />
+            <div>
+              <div style={{fontWeight:700, fontSize:13.5}}>구글시트에 저장 (권장)</div>
+              <div style={{fontSize:12, color:"#8A8272", marginTop:2}}>여러 기기에서 접속해도 같은 데이터를 봅니다. Apps Script 웹앱 URL이 필요해요.</div>
+            </div>
+          </label>
+          <label className="card" style={{padding:12, display:"flex", gap:10, alignItems:"flex-start", cursor:"pointer", border: mode==="local" ? "1.5px solid #2A2620" : "1px solid #E4DDCC"}}>
+            <input type="radio" checked={mode==="local"} onChange={()=>setMode("local")} style={{marginTop:3}} />
+            <div>
+              <div style={{fontWeight:700, fontSize:13.5}}>이 기기에만 저장</div>
+              <div style={{fontSize:12, color:"#8A8272", marginTop:2}}>설정 없이 바로 사용 가능. 다른 기기와 데이터가 공유되지 않습니다.</div>
+            </div>
+          </label>
+        </div>
+
+        {mode === "remote" && (
+          <div style={{marginBottom:14}}>
+            <input className="input" placeholder="https://script.google.com/macros/s/.../exec"
+              value={url} onChange={e=>setUrl(e.target.value)} />
+            <div style={{fontSize:11.5, color:"#B5AC98", marginTop:6, lineHeight:1.5}}>
+              Google 시트 → 확장 프로그램 → Apps Script에 제공된 코드를 붙여넣고<br/>
+              "웹 앱으로 배포" 후 나온 URL을 여기에 붙여넣으세요.
+            </div>
+          </div>
+        )}
+
+        <button className="save-btn" onClick={saveAndContinue} disabled={!mode}
+          style={{opacity: mode ? 1 : 0.5}}>시작하기</button>
+      </div>
+    </div>
+  );
+}
+
+/* ===========================================================
+   앱 루트
+=========================================================== */
+function PropertyApp() {
+  const [configured, setConfigured] = useState(localStorage.getItem(CONFIG_KEY) !== null);
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [tab, setTab] = useState("dashboard");
+  const [selectedUnit, setSelectedUnit] = useState(null);
+  const [saveState, setSaveState] = useState("idle");
+  const [showSettings, setShowSettings] = useState(false);
+
+  useEffect(() => {
+    if (!configured) return;
+    (async () => {
+      setLoading(true);
+      try {
+        const res = await Storage.get(STORAGE_KEY);
+        setData(res && res.value ? JSON.parse(res.value) : DEFAULT_DATA);
+      } catch (e) {
+        setData(DEFAULT_DATA);
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, [configured]);
+
+  useEffect(() => {
+    if (!data || loading) return;
+    const t = setTimeout(async () => {
+      setSaveState("saving");
+      try {
+        await Storage.set(STORAGE_KEY, JSON.stringify(data));
+        setSaveState("saved");
+      } catch (e) {
+        setSaveState("error");
+      }
+    }, 500);
+    return () => clearTimeout(t);
+  }, [data, loading]);
+
+  if (!configured) {
+    return <SetupScreen onDone={()=>setConfigured(true)} />;
+  }
+
+  if (loading || !data) {
+    return (
+      <div style={{minHeight:"100vh", display:"flex", alignItems:"center", justifyContent:"center", background:"#EFEAE0"}}>
+        <div style={{display:"flex", flexDirection:"column", alignItems:"center", gap:12, color:"#5B5548"}}>
+          <Icon name="loader" size={28} spin />
+          <span style={{fontSize:14}}>불러오는 중...</span>
+        </div>
+      </div>
+    );
+  }
+
+  const tabs = [
+    { id:"dashboard", label:"현황판", icon:"building" },
+    { id:"units", label:"세대·계약", icon:"home" },
+    { id:"items", label:"설비이력", icon:"wrench" },
+    { id:"common", label:"공용부", icon:"file" },
+    { id:"utility", label:"공과금", icon:"zap" },
+    { id:"stats", label:"통계", icon:"chart" },
+  ];
+
+  return (
+    <div style={{minHeight:"100vh", background:"#EFEAE0", paddingBottom:76}}>
+      <header style={{padding:"22px 18px 14px", position:"sticky", top:0, background:"#EFEAE0", zIndex:10, borderBottom:"1px solid #DDD5C4"}}>
+        <div style={{display:"flex", alignItems:"center", justifyContent:"space-between"}}>
+          <div>
+            <div style={{fontSize:11, letterSpacing:2, color:"#9A8F73", fontWeight:700}}>PROPERTY LEDGER</div>
+            <div style={{fontSize:20, fontWeight:800, marginTop:2}}>다가구 관리대장</div>
+          </div>
+          <div style={{display:"flex", alignItems:"center", gap:10}}>
+            <SaveIndicator state={saveState} />
+            <button onClick={()=>setShowSettings(true)} style={{background:"none", border:"none", cursor:"pointer", color:"#8A8272", padding:4}}>
+              <Icon name="gear" size={19} />
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <main style={{padding:"16px 14px"}}>
+        {tab==="dashboard" && <Dashboard data={data} onSelectUnit={(ho)=>{setSelectedUnit(ho); setTab("units");}} />}
+        {tab==="units" && <UnitsTab data={data} setData={setData} selectedUnit={selectedUnit} setSelectedUnit={setSelectedUnit} />}
+        {tab==="items" && <ItemsTab data={data} setData={setData} />}
+        {tab==="common" && <CommonTab data={data} setData={setData} />}
+        {tab==="utility" && <UtilityTab data={data} setData={setData} />}
+        {tab==="stats" && <StatsTab data={data} />}
+      </main>
+
+      <nav style={{position:"fixed", bottom:0, left:0, right:0, background:"#2A2620", display:"flex", padding:"6px 2px calc(env(safe-area-inset-bottom,0px) + 6px)", overflowX:"auto"}}>
+        {tabs.map(t => {
+          const active = tab===t.id;
+          return (
+            <button key={t.id} onClick={()=>setTab(t.id)}
+              style={{ flex:"1 0 auto", minWidth:58, display:"flex", flexDirection:"column", alignItems:"center", gap:3,
+                padding:"8px 2px", background:"none", border:"none", color: active?"#E8A75C":"#9A9385", cursor:"pointer" }}>
+              <Icon name={t.icon} size={19} />
+              <span style={{fontSize:10, fontWeight: active?700:500}}>{t.label}</span>
+            </button>
+          );
+        })}
+      </nav>
+
+      {showSettings && <SettingsModal onClose={()=>setShowSettings(false)} onReset={()=>{ setConfigured(false); }} />}
+    </div>
+  );
+}
+
+function SettingsModal({ onClose, onReset }) {
+  const [url, setUrl] = useState(getRemoteUrl());
+  return (
+    <div onClick={onClose} style={{position:"fixed", inset:0, background:"rgba(20,17,12,0.5)", zIndex:200, display:"flex", alignItems:"flex-end"}}>
+      <div onClick={e=>e.stopPropagation()} className="card" style={{width:"100%", borderRadius:"16px 16px 0 0", padding:20}}>
+        <div style={{fontWeight:800, fontSize:16, marginBottom:12}}>저장소 설정</div>
+        <div style={{fontSize:12.5, color:"#6B6355", marginBottom:6}}>구글 앱스크립트 웹앱 URL</div>
+        <input className="input" value={url} onChange={e=>setUrl(e.target.value)} placeholder="https://script.google.com/macros/s/.../exec" />
+        <div style={{display:"flex", gap:8, marginTop:14}}>
+          <button className="save-btn" style={{flex:1}} onClick={()=>{ setRemoteUrl(url.trim()); location.reload(); }}>저장 후 새로고침</button>
+        </div>
+        <button onClick={()=>{ setRemoteUrl(""); localStorage.removeItem(CONFIG_KEY); location.reload(); }}
+          style={{marginTop:10, background:"none", border:"none", color:"#B0546A", fontSize:12.5, cursor:"pointer", width:"100%"}}>
+          이 기기에만 저장하는 방식으로 전환
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function SaveIndicator({ state }) {
+  const map = { idle:{text:"",color:"#9A8F73"}, saving:{text:"저장 중…",color:"#9A8F73"}, saved:{text:"저장됨",color:"#7C9A72"}, error:{text:"저장 실패",color:"#B0546A"} };
+  const s = map[state] || map.idle;
+  if (!s.text) return null;
+  return <div style={{fontSize:11, color:s.color, fontWeight:600}}>{s.text}</div>;
+}
+
+/* ===========================================================
+   대시보드
+=========================================================== */
+function Dashboard({ data, onSelectUnit }) {
+  const expiring = useMemo(() => data.units.map(u => ({ ho:u.ho, ...data.contracts[u.ho] }))
+    .filter(c=>c.endDate).map(c=>({...c, d:daysUntil(c.endDate)})).sort((a,b)=>a.d-b.d), [data]);
+  const soon = expiring.filter(c => c.d !== null && c.d <= 60);
+  const totalDeposit = data.units.reduce((s,u)=> s+(Number(data.contracts[u.ho]?.deposit)||0), 0);
+  const totalRent = data.units.reduce((s,u)=> s+(Number(data.contracts[u.ho]?.rent)||0), 0);
+  const vacantCount = data.units.filter(u => (data.contracts[u.ho]?.occupied ?? true) === false).length;
+
+  return (
+    <div style={{display:"flex", flexDirection:"column", gap:18}}>
+      <section>
+        <SectionLabel>건물 배치도</SectionLabel>
+        <div className="card" style={{padding:16}}>
+          {FLOOR_LAYOUT.slice().reverse().map(row => (
+            <div key={row.floor} style={{display:"flex", gap:8, marginBottom:8}}>
+              <div style={{width:22, display:"flex", alignItems:"center", justifyContent:"center", fontSize:11, color:"#9A8F73", fontWeight:700}}>{row.floor}F</div>
+              {row.cells.map((ho,i) => {
+                if (!ho) return <div key={i} style={{flex:1}} />;
+                const unit = data.units.find(u=>u.ho===ho);
+                const c = data.contracts[ho] || {};
+                const vacant = (c.occupied ?? true) === false;
+                const d = daysUntil(c.endDate);
+                const warn = !vacant && d!==null && d<=60;
+                return (
+                  <button key={ho} onClick={()=>onSelectUnit(ho)} style={{
+                    flex:1, aspectRatio:"1", borderRadius:10,
+                    border: vacant ? "1.5px dashed #C97A4A" : warn ? "2px solid #C97A4A" : "1px solid #DDD5C4",
+                    background: vacant ? "#FBF1E8" : warn ? "#F7E4D2" : "#FBF8F2", cursor:"pointer",
+                    display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:2, position:"relative",
+                  }}>
+                    <span style={{width:6,height:6,borderRadius:99, background:TYPE_COLOR[unit?.type]||"#999", position:"absolute", top:6, right:6}} />
+                    <span style={{fontSize:12.5, fontWeight:800}}>{ho.replace("호","")}</span>
+                    {vacant ? <span style={{fontSize:9.5, fontWeight:700, color:"#C97A4A"}}>공실</span> : warn ? <Icon name="warn" size={11} color="#C97A4A" /> : null}
+                  </button>
+                );
+              })}
+            </div>
+          ))}
+          <div style={{display:"flex", gap:12, marginTop:10, flexWrap:"wrap"}}>
+            {Object.entries(TYPE_COLOR).map(([k,v]) => (
+              <div key={k} style={{display:"flex", alignItems:"center", gap:5, fontSize:11, color:"#6B6355"}}>
+                <span style={{width:7, height:7, borderRadius:99, background:v}} /> {k}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section style={{display:"flex", gap:10}}>
+        <StatCard label="총 보증금" value={`${fmtMoney(totalDeposit)}만`} />
+        <StatCard label="총 월세" value={`${fmtMoney(totalRent)}만`} />
+        <StatCard label="공실" value={`${vacantCount}세대`} accent={vacantCount>0} />
+      </section>
+
+      <section>
+        <SectionLabel>계약 만료 임박 (60일 이내)</SectionLabel>
+        <div className="card">
+          {soon.length===0 && <EmptyRow text="임박한 계약이 없습니다" />}
+          {soon.map(c => (
+            <div key={c.ho} className="row" onClick={()=>onSelectUnit(c.ho)}>
+              <div style={{display:"flex", flexDirection:"column"}}>
+                <span style={{fontWeight:700, fontSize:14}}>{c.ho}</span>
+                <span style={{fontSize:12, color:"#8A8272"}}>만기 {c.endDate}</span>
+              </div>
+              <div style={{display:"flex", alignItems:"center", gap:6}}>
+                <span style={{fontSize:12.5, fontWeight:700, color: c.d<0 ? "#B0546A" : "#C97A4A"}}>{overdueLabel(c.endDate, c.d)}</span>
+                <Icon name="chevron" size={16} color="#B5AC98" />
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function StatCard({ label, value, accent }) {
+  return (
+    <div className="card" style={{flex:1, padding:"14px 12px"}}>
+      <div style={{fontSize:11, color:"#9A8F73", fontWeight:600}}>{label}</div>
+      <div style={{fontSize:18, fontWeight:800, marginTop:4, color: accent ? "#C97A4A" : "#2A2620"}}>{value}</div>
+    </div>
+  );
+}
+function SectionLabel({ children }) { return <div style={{fontSize:12.5, fontWeight:700, color:"#6B6355", marginBottom:8}}>{children}</div>; }
+function EmptyRow({ text }) { return <div style={{padding:"22px 14px", textAlign:"center", color:"#B5AC98", fontSize:13}}>{text}</div>; }
+
+/* ===========================================================
+   세대 · 계약 탭
+=========================================================== */
+function UnitsTab({ data, setData, selectedUnit, setSelectedUnit }) {
+  const unit = data.units.find(u=>u.ho===selectedUnit) || data.units[0];
+  const contract = data.contracts[unit.ho] || {};
+
+  const updateContract = (field, value) => setData(d => ({ ...d, contracts:{ ...d.contracts, [unit.ho]:{ ...d.contracts[unit.ho], [field]:value } } }));
+  const toggleHolding = (cat) => setData(d => ({ ...d, holdings:{ ...d.holdings, [unit.ho]:{ ...d.holdings[unit.ho], [cat]: !d.holdings[unit.ho]?.[cat] } } }));
+
+  return (
+    <div style={{display:"flex", flexDirection:"column", gap:14}}>
+      <div style={{display:"flex", gap:8, overflowX:"auto", paddingBottom:4}}>
+        {data.units.map(u => (
+          <button key={u.ho} onClick={()=>setSelectedUnit(u.ho)} style={{
+            flexShrink:0, padding:"7px 13px", borderRadius:20, fontSize:13, fontWeight:700,
+            border: u.ho===unit.ho ? "1.5px solid #2A2620" : "1px solid #DDD5C4",
+            background: u.ho===unit.ho ? "#2A2620" : "#FBF8F2", color: u.ho===unit.ho ? "#EFEAE0" : "#4A453A", cursor:"pointer",
+          }}>{u.ho}</button>
+        ))}
+      </div>
+
+      <div className="card" style={{padding:16}}>
+        <div style={{display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:12}}>
+          <div style={{fontSize:17, fontWeight:800}}>{unit.ho}</div>
+          <div style={{display:"flex", gap:6, alignItems:"center"}}>
+            <button onClick={()=>updateContract("occupied", !((contract.occupied ?? true)))} style={{
+              fontSize:11.5, fontWeight:700, border:"none", borderRadius:20, padding:"4px 11px", cursor:"pointer",
+              background: (contract.occupied ?? true) ? "#EAF1E6" : "#F3E3DC", color: (contract.occupied ?? true) ? "#4F6B48" : "#A85A3E",
+            }}>{(contract.occupied ?? true) ? "임대중" : "공실"}</button>
+            <span style={{fontSize:11.5, fontWeight:700, color:"#fff", background:TYPE_COLOR[unit.type], padding:"3px 9px", borderRadius:20}}>{unit.type}</span>
+          </div>
+        </div>
+
+        <FieldRow label="세입자명"><input className="input" value={contract.tenant||""} placeholder="이름 입력" onChange={e=>updateContract("tenant", e.target.value)} /></FieldRow>
+        <FieldRow label="보증금(만원)"><input className="input" type="number" value={contract.deposit ?? ""} onChange={e=>updateContract("deposit", e.target.value)} /></FieldRow>
+        <FieldRow label="월세(만원)"><input className="input" type="number" value={contract.rent ?? ""} onChange={e=>updateContract("rent", e.target.value)} /></FieldRow>
+        <FieldRow label="계약만기일"><input className="input" type="date" value={contract.endDate||""} onChange={e=>updateContract("endDate", e.target.value)} /></FieldRow>
+
+        <div style={{marginTop:12, paddingTop:12, borderTop:"1px solid #F0ECE1"}}>
+          <span style={{fontSize:13, color:"#6B6355", fontWeight:600, display:"block", marginBottom:8}}>계약서 사진</span>
+          <ContractPhoto ho={unit.ho} />
+        </div>
+      </div>
+
+      <div className="card" style={{padding:16}}>
+        <SectionLabel>보유 설비</SectionLabel>
+        <div style={{display:"flex", flexWrap:"wrap", gap:8}}>
+          {REQUIRED_CATS.map(cat => {
+            const has = data.holdings[unit.ho]?.[cat] !== false;
+            return (
+              <button key={cat} onClick={()=>toggleHolding(cat)} style={{
+                padding:"6px 12px", borderRadius:20, fontSize:12.5, fontWeight:600, cursor:"pointer",
+                border: has ? "1px solid #7C9A72" : "1px solid #DDD5C4", background: has ? "#EAF1E6" : "#F3F0E8", color: has ? "#4F6B48" : "#B5AC98",
+              }}>{has ? <Icon name="check" size={12} /> : null} {cat}</button>
+            );
+          })}
+        </div>
+      </div>
+
+      <UnitRepairHistory data={data} setData={setData} ho={unit.ho} />
+    </div>
+  );
+}
+
+function FieldRow({ label, children }) {
+  return (
+    <div style={{display:"flex", alignItems:"center", justifyContent:"space-between", padding:"9px 0", borderBottom:"1px solid #F0ECE1"}}>
+      <span style={{fontSize:13, color:"#6B6355", fontWeight:600, flexShrink:0, width:92}}>{label}</span>
+      <div style={{flex:1, display:"flex", justifyContent:"flex-end"}}>{children}</div>
+    </div>
+  );
+}
+
+function UnitRepairHistory({ data, setData, ho }) {
+  const logs = data.itemLogs.filter(l=>l.ho===ho).slice().sort((a,b)=>(b.date||"").localeCompare(a.date||""));
+  const removeLog = (id) => setData(d => ({ ...d, itemLogs: d.itemLogs.filter(l=>l.id!==id) }));
+  const totalCost = logs.reduce((s,l)=> s+(Number(l.cost)||0), 0);
+  const turnoverCost = logs.filter(l=>l.turnover).reduce((s,l)=> s+(Number(l.cost)||0), 0);
+
+  return (
+    <div className="card">
+      <div style={{padding:"12px 14px 4px", display:"flex", justifyContent:"space-between", alignItems:"center", flexWrap:"wrap", gap:4}}>
+        <SectionLabel>{ho} 수리·설비 이력 ({logs.length}건)</SectionLabel>
+        <div style={{display:"flex", gap:8, fontSize:12, color:"#8A8272", fontWeight:600}}>
+          {totalCost>0 && <span>누적 {fmtMoney(totalCost)}만원</span>}
+          {turnoverCost>0 && <span style={{color:"#7A4F94"}}>세입자교체 {fmtMoney(turnoverCost)}만원</span>}
+        </div>
+      </div>
+      {logs.length===0 && <EmptyRow text="등록된 이력이 없습니다" />}
+      {logs.map(l => (
+        <div key={l.id} className="row" style={{alignItems:"flex-start"}}>
+          <div style={{display:"flex", flexDirection:"column", gap:2, flex:1}}>
+            <div style={{display:"flex", gap:6, alignItems:"center", flexWrap:"wrap"}}>
+              <span style={{fontSize:11, padding:"1px 7px", borderRadius:10, background:"#F0ECE1", color:"#6B6355"}}>{l.cat}</span>
+              {l.turnover && <span style={{fontSize:11, padding:"1px 7px", borderRadius:10, background:"#EDE0F2", color:"#7A4F94", fontWeight:700}}>세입자교체</span>}
+              {l.date && <span style={{fontSize:11, color:"#B5AC98"}}>{l.date}</span>}
+            </div>
+            <div style={{fontSize:13.5}}>{l.content}</div>
+            {l.cost && <div style={{fontSize:12, color:"#8A8272"}}>{l.cost}만원</div>}
+          </div>
+          <button onClick={()=>removeLog(l.id)} style={{background:"none", border:"none", cursor:"pointer", color:"#B5AC98", padding:4}}><Icon name="trash" size={15} /></button>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* ===========================================================
+   계약서 사진
+=========================================================== */
+function ContractPhoto({ ho }) {
+  const [photos, setPhotos] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [busy, setBusy] = useState(false);
+  const [preview, setPreview] = useState(null);
+  const key = `contract-photo:${ho}`;
+
+  useEffect(() => {
+    let cancelled = false;
+    setLoading(true);
+    (async () => {
+      try {
+        const res = await Storage.get(key);
+        if (!cancelled) setPhotos(res && res.value ? JSON.parse(res.value) : []);
+      } catch (e) { if (!cancelled) setPhotos([]); }
+      finally { if (!cancelled) setLoading(false); }
+    })();
+    return () => { cancelled = true; };
+  }, [ho]);
+
+  const save = async (next) => { setPhotos(next); try { await Storage.set(key, JSON.stringify(next)); } catch(e){} };
+
+  const onFile = async (e) => {
+    const file = e.target.files?.[0]; e.target.value = "";
+    if (!file) return;
+    setBusy(true);
+    try { const compressed = await compressImage(file); await save([...(photos||[]), compressed]); }
+    catch (err) { alert("사진 처리 중 문제가 발생했습니다."); }
+    finally { setBusy(false); }
+  };
+  const removeAt = async (idx) => { await save((photos||[]).filter((_,i)=>i!==idx)); setPreview(null); };
+
+  if (loading) return <div style={{fontSize:12.5, color:"#B5AC98", display:"flex", alignItems:"center", gap:6}}><Icon name="loader" size={13} spin /> 불러오는 중</div>;
+
+  return (
+    <div>
+      <div style={{display:"flex", flexWrap:"wrap", gap:8}}>
+        {(photos||[]).map((p,i) => (
+          <button key={i} onClick={()=>setPreview(p)} style={{width:64, height:64, borderRadius:8, overflow:"hidden", border:"1px solid #DDD5C4", padding:0, cursor:"pointer", flexShrink:0}}>
+            <img src={p} alt={`계약서 ${i+1}`} style={{width:"100%", height:"100%", objectFit:"cover", display:"block"}} />
+          </button>
+        ))}
+        <label style={{width:64, height:64, borderRadius:8, border:"1.5px dashed #C9A96E", background:"#F7EEDD", display:"flex", alignItems:"center", justifyContent:"center", cursor:"pointer", flexShrink:0}}>
+          {busy ? <Icon name="loader" size={18} color="#8A6A2E" spin /> : <Icon name="plus" size={18} color="#8A6A2E" />}
+          <input type="file" accept="image/*" onChange={onFile} style={{display:"none"}} disabled={busy} />
+        </label>
+      </div>
+      {(!photos || photos.length===0) && !busy && <div style={{fontSize:11.5, color:"#B5AC98", marginTop:6}}>등록된 계약서 사진이 없습니다</div>}
+
+      {preview && (
+        <div onClick={()=>setPreview(null)} style={{position:"fixed", inset:0, background:"rgba(20,17,12,0.88)", zIndex:100, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", padding:20}}>
+          <img src={preview} alt="계약서 확대" style={{maxWidth:"100%", maxHeight:"78vh", borderRadius:8}} />
+          <div style={{display:"flex", gap:10, marginTop:16}}>
+            <button onClick={(e)=>{e.stopPropagation(); const idx=(photos||[]).indexOf(preview); removeAt(idx);}} style={{display:"flex", alignItems:"center", gap:6, padding:"9px 16px", borderRadius:10, border:"none", background:"#B0546A", color:"#fff", fontWeight:700, fontSize:13, cursor:"pointer"}}><Icon name="trash" size={14} /> 삭제</button>
+            <button onClick={(e)=>{e.stopPropagation(); setPreview(null);}} style={{display:"flex", alignItems:"center", gap:6, padding:"9px 16px", borderRadius:10, border:"none", background:"#EFEAE0", color:"#2A2620", fontWeight:700, fontSize:13, cursor:"pointer"}}><Icon name="x" size={14} /> 닫기</button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ===========================================================
+   설비이력 탭
+=========================================================== */
+function ItemsTab({ data, setData }) {
+  const [filterUnit, setFilterUnit] = useState("전체");
+  const [showForm, setShowForm] = useState(false);
+  const [form, setForm] = useState({ ho:data.units[0].ho, cat:ALL_CATS[0], date:"", content:"", cost:"", turnover:false });
+
+  const logs = data.itemLogs.filter(l => filterUnit==="전체" || l.ho===filterUnit).slice().sort((a,b)=>(b.date||"").localeCompare(a.date||""));
+
+  const addLog = () => {
+    if (!form.content.trim()) return;
+    setData(d => ({ ...d, itemLogs:[...d.itemLogs, { id:nid(), ...form }] }));
+    setForm({ ho:data.units[0].ho, cat:ALL_CATS[0], date:"", content:"", cost:"", turnover:false });
+    setShowForm(false);
+  };
+  const removeLog = (id) => setData(d => ({ ...d, itemLogs: d.itemLogs.filter(l=>l.id!==id) }));
+
+  return (
+    <div style={{display:"flex", flexDirection:"column", gap:12}}>
+      <div style={{display:"flex", gap:8, overflowX:"auto"}}>
+        {["전체", ...UNIT_ORDER].map(ho => (
+          <button key={ho} onClick={()=>setFilterUnit(ho)} style={{
+            flexShrink:0, padding:"6px 12px", borderRadius:20, fontSize:12.5, fontWeight:700,
+            border: filterUnit===ho ? "1.5px solid #2A2620" : "1px solid #DDD5C4",
+            background: filterUnit===ho ? "#2A2620" : "#FBF8F2", color: filterUnit===ho ? "#EFEAE0" : "#4A453A", cursor:"pointer",
+          }}>{ho}</button>
+        ))}
+      </div>
+
+      <button className="add-btn" onClick={()=>setShowForm(s=>!s)}><Icon name="plus" size={15} /> 이력 추가</button>
+
+      {showForm && (
+        <div className="card" style={{padding:14, display:"flex", flexDirection:"column", gap:8}}>
+          <div style={{display:"flex", gap:8}}>
+            <select className="input" style={{flex:1}} value={form.ho} onChange={e=>setForm(f=>({...f,ho:e.target.value}))}>
+              {UNIT_ORDER.map(h => <option key={h} value={h}>{h}</option>)}
+            </select>
+            <select className="input" style={{flex:1}} value={form.cat} onChange={e=>setForm(f=>({...f,cat:e.target.value}))}>
+              {ALL_CATS.map(c => <option key={c} value={c}>{c}</option>)}
+            </select>
+          </div>
+          <input className="input" type="date" value={form.date} onChange={e=>setForm(f=>({...f,date:e.target.value}))} />
+          <input className="input" placeholder="내용 (예: 보일러 PCB 수리)" value={form.content} onChange={e=>setForm(f=>({...f,content:e.target.value}))} />
+          <input className="input" placeholder="비용(만원, 선택)" value={form.cost} onChange={e=>setForm(f=>({...f,cost:e.target.value}))} />
+          <label style={{display:"flex", alignItems:"center", gap:7, fontSize:13, color:"#6B6355", cursor:"pointer"}}>
+            <input type="checkbox" checked={form.turnover} onChange={e=>setForm(f=>({...f,turnover:e.target.checked}))} /> 세입자 교체 시 발생한 비용
+          </label>
+          <button className="save-btn" onClick={addLog}><Icon name="save" size={14} /> 저장</button>
+        </div>
+      )}
+
+      <div className="card">
+        {logs.length===0 && <EmptyRow text="등록된 이력이 없습니다" />}
+        {logs.map(l => (
+          <div key={l.id} className="row" style={{alignItems:"flex-start"}}>
+            <div style={{display:"flex", flexDirection:"column", gap:2, flex:1}}>
+              <div style={{display:"flex", gap:6, alignItems:"center", flexWrap:"wrap"}}>
+                <span style={{fontSize:11.5, fontWeight:800, color:"#C97A4A"}}>{l.ho}</span>
+                <span style={{fontSize:11, padding:"1px 7px", borderRadius:10, background:"#F0ECE1", color:"#6B6355"}}>{l.cat}</span>
+                {l.turnover && <span style={{fontSize:11, padding:"1px 7px", borderRadius:10, background:"#EDE0F2", color:"#7A4F94", fontWeight:700}}>세입자교체</span>}
+                {l.date && <span style={{fontSize:11, color:"#B5AC98"}}>{l.date}</span>}
+              </div>
+              <div style={{fontSize:13.5}}>{l.content}</div>
+              {l.cost && <div style={{fontSize:12, color:"#8A8272"}}>{l.cost}만원</div>}
+            </div>
+            <button onClick={()=>removeLog(l.id)} style={{background:"none", border:"none", cursor:"pointer", color:"#B5AC98", padding:4}}><Icon name="trash" size={15} /></button>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ===========================================================
+   공용부 탭
+=========================================================== */
+function CommonTab({ data, setData }) {
+  const [showForm, setShowForm] = useState(false);
+  const [form, setForm] = useState({ date:"", loc:"", content:"", cost:"", note:"" });
+  const logs = data.commonLogs.slice().sort((a,b)=>(b.date||"").localeCompare(a.date||""));
+
+  const addLog = () => {
+    if (!form.content.trim()) return;
+    setData(d => ({ ...d, commonLogs:[...d.commonLogs, { id:nid(), ...form }] }));
+    setForm({ date:"", loc:"", content:"", cost:"", note:"" });
+    setShowForm(false);
+  };
+  const removeLog = (id) => setData(d => ({ ...d, commonLogs: d.commonLogs.filter(l=>l.id!==id) }));
+
+  return (
+    <div style={{display:"flex", flexDirection:"column", gap:12}}>
+      <SectionLabel>건물 공용부 이력 (옥상·주차장·외벽 등)</SectionLabel>
+      <button className="add-btn" onClick={()=>setShowForm(s=>!s)}><Icon name="plus" size={15} /> 공용부 이력 추가</button>
+      {showForm && (
+        <div className="card" style={{padding:14, display:"flex", flexDirection:"column", gap:8}}>
+          <input className="input" type="date" value={form.date} onChange={e=>setForm(f=>({...f,date:e.target.value}))} />
+          <input className="input" placeholder="위치 (예: 옥상, 주차장)" value={form.loc} onChange={e=>setForm(f=>({...f,loc:e.target.value}))} />
+          <input className="input" placeholder="내용" value={form.content} onChange={e=>setForm(f=>({...f,content:e.target.value}))} />
+          <input className="input" placeholder="비용(만원, 선택)" value={form.cost} onChange={e=>setForm(f=>({...f,cost:e.target.value}))} />
+          <input className="input" placeholder="비고 (예: 보험처리)" value={form.note} onChange={e=>setForm(f=>({...f,note:e.target.value}))} />
+          <button className="save-btn" onClick={addLog}><Icon name="save" size={14} /> 저장</button>
+        </div>
+      )}
+      <div className="card">
+        {logs.length===0 && <EmptyRow text="등록된 공용부 이력이 없습니다" />}
+        {logs.map(l => (
+          <div key={l.id} className="row" style={{alignItems:"flex-start"}}>
+            <div style={{display:"flex", flexDirection:"column", gap:2, flex:1}}>
+              <div style={{display:"flex", gap:6, alignItems:"center"}}>
+                <span style={{fontSize:11, padding:"1px 7px", borderRadius:10, background:"#F0ECE1", color:"#6B6355"}}>{l.loc}</span>
+                {l.date && <span style={{fontSize:11, color:"#B5AC98"}}>{l.date}</span>}
+              </div>
+              <div style={{fontSize:13.5}}>{l.content}</div>
+              <div style={{fontSize:12, color:"#8A8272"}}>{l.cost ? `${l.cost}만원` : ""}{l.cost && l.note ? " · " : ""}{l.note}</div>
+            </div>
+            <button onClick={()=>removeLog(l.id)} style={{background:"none", border:"none", cursor:"pointer", color:"#B5AC98", padding:4}}><Icon name="trash" size={15} /></button>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ===========================================================
+   공과금 탭
+=========================================================== */
+function UtilityTab({ data, setData }) {
+  const update = (id, field, value) => setData(d => ({ ...d, utilities: d.utilities.map(u => u.id===id ? {...u,[field]:value} : u) }));
+  const rowSum = (u) => UTIL_FIELDS.reduce((s,f)=> s+(Number(u[f.key])||0), 0);
+  const yearSum = data.utilities.reduce((s,u)=> s+rowSum(u), 0);
+
+  return (
+    <div style={{display:"flex", flexDirection:"column", gap:12}}>
+      <SectionLabel>월별 공과금 (2026년, 단위: 만원)</SectionLabel>
+      <StatCard label="연간 합계" value={`${fmtMoney(yearSum)}만`} />
+      <div style={{overflowX:"auto"}} className="card">
+        <table style={{borderCollapse:"collapse", width:"100%", minWidth:640}}>
+          <thead><tr style={{background:"#2A2620"}}>
+            <th className="th">연월</th>{UTIL_FIELDS.map(f => <th key={f.key} className="th">{f.label}</th>)}<th className="th">합계</th>
+          </tr></thead>
+          <tbody>
+            {data.utilities.map(u => (
+              <tr key={u.id}>
+                <td className="td" style={{fontWeight:700}}>{u.month}</td>
+                {UTIL_FIELDS.map(f => (
+                  <td key={f.key} className="td"><input className="cell-input" type="number" value={u[f.key]} onChange={e=>update(u.id, f.key, e.target.value)} placeholder="0" /></td>
+                ))}
+                <td className="td" style={{fontWeight:700, color:"#C97A4A"}}>{fmtMoney(rowSum(u))}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+/* ===========================================================
+   통계 탭
+=========================================================== */
+function StatsTab({ data }) {
+  const repairByUnit = useMemo(() => UNIT_ORDER.map(ho => ({
+    ho: ho.replace("호",""), cost: data.itemLogs.filter(l=>l.ho===ho).reduce((s,l)=> s+(Number(l.cost)||0), 0),
+  })), [data]);
+  const utilByMonth = useMemo(() => data.utilities.map(u => ({
+    month: u.month.slice(5), total: UTIL_FIELDS.reduce((s,f)=> s+(Number(u[f.key])||0), 0),
+  })), [data]);
+
+  const totalRepairCost = repairByUnit.reduce((s,r)=>s+r.cost,0);
+  const turnoverCost = data.itemLogs.filter(l=>l.turnover).reduce((s,l)=> s+(Number(l.cost)||0), 0);
+  const annualRent = data.units.reduce((s,u)=> s+(Number(data.contracts[u.ho]?.rent)||0), 0) * 12;
+  const occupiedCount = data.units.filter(u => (data.contracts[u.ho]?.occupied ?? true) !== false).length;
+  const occupancyRate = Math.round((occupiedCount / data.units.length) * 100);
+
+  return (
+    <div style={{display:"flex", flexDirection:"column", gap:16}}>
+      <section style={{display:"flex", gap:10}}>
+        <StatCard label="연 임대료 환산" value={`${fmtMoney(annualRent)}만`} />
+        <StatCard label="임대율" value={`${occupancyRate}%`} />
+      </section>
+      <section style={{display:"flex", gap:10}}>
+        <StatCard label="누적 수리비" value={`${fmtMoney(totalRepairCost)}만`} />
+        <StatCard label="세입자교체 비용" value={`${fmtMoney(turnoverCost)}만`} accent />
+      </section>
+      <section>
+        <SectionLabel>세대별 누적 수리비 (만원)</SectionLabel>
+        <div className="card"><SimpleBarChart data={repairByUnit} labelKey="ho" valueKey="cost" /></div>
+      </section>
+      <section>
+        <SectionLabel>월별 공과금 합계 추이 (2026, 만원)</SectionLabel>
+        <div className="card"><SimpleLineChart data={utilByMonth} labelKey="month" valueKey="total" /></div>
+      </section>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<PropertyApp />);
+</script>
+</body>
+</html>
